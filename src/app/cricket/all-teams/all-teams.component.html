@@ -71,7 +71,7 @@
 
      <div class="row">
       <div class="col-md-6">
-        <button class="btn btn-warning m-3" (click)="selectedGroup('A')">Generate Schedule - Group-A</button><br>
+        <button class="btn btn-warning m-3" (click)="selectedGroup('A')">Schedule Matches</button><br>
         <table class="table table-bordered table-sm" *ngIf="ScheduledMatchesOfA.length" >
           <thead>
             <tr>
@@ -90,7 +90,7 @@
         </table>
       </div>
       <div class="col-md-6">
-        <button class="btn btn-warning m-3" (click)="selectedGroup('B')">Generate Schedule - Group-B</button><br>
+       <br><br><br>
         <table class="table table-bordered table-sm" *ngIf="ScheduledMatchesOfB.length">
           <thead>
             <tr>
@@ -103,7 +103,7 @@
           <tr class="" *ngFor="let obj of ScheduledMatchesOfB">
              <td>{{obj.teams}}</td>
              <td>{{obj.date}}</td>
-             <td><button class="btn btn-primary my-1 border-primary">Play Now</button></td>
+             <td><button class="btn btn-primary my-1 border-primary" routerLink="/start" (click)="PayNow(obj)">Play Now</button></td>
           </tr>
           </tbody>
         </table>

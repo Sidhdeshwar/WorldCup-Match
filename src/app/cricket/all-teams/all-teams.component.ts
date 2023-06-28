@@ -60,14 +60,16 @@ return a;
 
   segregate()
   {
-    this.ScheduledMatchesOfA = []
-    this.ScheduledMatchesOfB = []
+    this.ScheduledMatchesOfA = [];
+    this.ScheduledMatchesOfB = [];
+    let now = new Date('Jul 1 2023')
      for(let i=0 ; i<this.FinalSchedule.length ; i++)
      {
         for(let j=0 ; j<this.GroupA.length ; j++)
         {
           if(this.FinalSchedule[i].teams.includes(this.GroupA[j]))
           {
+            let obj = 1;
             this.ScheduledMatchesOfA.push(this.FinalSchedule[i]);
             break;
           }
@@ -76,9 +78,36 @@ return a;
             this.ScheduledMatchesOfB.push(this.FinalSchedule[i]);
             break;
           }
-
         }
      }
+     this.ScheduledMatchesOfA = this.MakeTeamsAlternate(this.ScheduledMatchesOfA);
+     this.ScheduledMatchesOfB = this.MakeTeamsAlternate(this.ScheduledMatchesOfB);
+
+  }
+
+  MakeTeamsAlternate(arr:any[])
+  {
+     let i=0;
+     let j = arr.length - 1;
+     let a:any [] = [];
+     while(i<j)
+     {
+       a.push(arr[i].teams);
+       a.push(arr[j].teams);
+       i++;
+       j--;
+     }
+     for(let i=0 ; i<a.length ; i++)
+     {
+       arr[i].teams = a[i];
+     }
+     
+     return arr;
+  }
+
+  PayNow(obj:any)
+  {
+   localStorage.setItem('teams', JSON.stringify(obj));
   }
 
 
