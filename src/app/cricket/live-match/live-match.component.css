@@ -1,0 +1,16 @@
+.BG{
+  background-color: rgb(199, 209, 223);
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+
+}
+.TOP
+{
+  background-color: rgb(56, 23, 245);
+}
+.BOTTOM
+{
+  background-color:rgb(33, 2, 209);
+}

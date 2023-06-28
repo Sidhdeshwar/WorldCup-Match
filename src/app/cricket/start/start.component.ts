@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Afganistan,India,Pakistan } from  'src/app/store';
+import { ALL_TEAMS, plr } from 'src/app/store';
+
+
 
 @Component({
   selector: 'app-start',
@@ -11,8 +15,26 @@ Team1:any [] = [];
 Team2:any [] = [];
 team1 = '';
 team2 = '';
+url1: any ;
+url2: any = `../../../assets/${this.team2}.png`;
 date :any;
 TwoTeams : any;
+AllTeams1:any[] = [{team:'India',players:India},{team:'Pakistan',players:Pakistan},{team:'Afganistan',players:Afganistan},];
+
+obj = {
+  team1:this.team1,
+  team2:this.team2,
+  myTeam:'',
+  theyTeam:'',
+  myHeadTail: '',
+  MeWonToss:'',
+  TheyWonToss:'',
+  choose:'',
+  overs:0,
+  tosswinteam:'',
+  batTeam:'',
+  bowlTeam:''
+}
 constructor(){
   let a = localStorage.getItem('teams')
   if(a!=null)
@@ -23,62 +45,112 @@ constructor(){
     this.team1 = arr[0];
     this.team2 = arr[1];
   }
+  this.url1 = `../../../assets/${this.team1}.png`;
+  this.url2 = `../../../assets/${this.team2}.png`;
+console.log("URL1", this.url1);
+console.log("URL2", this.url2);
+
 }
 
 ShowTeam1()
 {
-   for(let i=0 ; i<this.AllTeamPlayers.length ; i++)
+   for(let i=0 ; i<this.AllTeams1.length ; i++)
    {
-     console.log(this.AllTeamPlayers[0].team);
-     
+      if(this.AllTeams1[i].team==this.team1)
+      {
+         this.Team1 = this.AllTeams1[i].players;
+      }
+      if(this.AllTeams1[i].team==this.team2)
+      {
+         this.Team2 = this.AllTeams1[i].players;
+      }
    }
- 
-  
 }
 
-AllTeamPlayers: any [] = [
-  { team:  { India: { plr1: {name: "Rohit Sharma (C)",categery: "batting",strikeRate: 145.26 },
-             plr2: {name: "Shubhman Gill",categery: "batting",strikeRate: 160.76 },
-             plr3: {name: "Virat Kohli",categery: "batting",strikeRate: 176.23 },
-             plr4: {name: "Suryakumar Yadav",categery: "batting",strikeRate: 190.36 },
-             plr5: {name: "Rishabh Pant (Wk)",categery: "batting",strikeRate: 165.25 },
-             plr6: {name: "Ajinkya Rahane",categery: "batting",strikeRate: 177.76 },
-             plr7: {name: "Hardik Pandya",categery: "allRounder",strikeRate: 160.16 },
-             plr8: {name: "Ravindra Jadeja",categery: "allRounder",strikeRate: 180.25 },
-             plr9: {name: "Buvaneshwar Kumar",categery: "bowling",strikeRate: 90.76 },
-             plr10: {name: "Ravi Bishnoi",categery: "bowling",strikeRate: 45.30 },
-             plr11: {name: "Jasprit Bumrah",categery: "bowling",strikeRate: 30.21 }
-            },
-           Pakistan: { plr1: {name: "Babar Azam (C)",categery: "batting",strikeRate: 145.26 },
-            plr2: {name: "Mohammad Rizwan (Wk)",categery: "batting",strikeRate: 160.76 },
-            plr3: {name: "Imad Wasim",categery: "batting",strikeRate: 176.23 },
-            plr4: {name: "Naseem Shah",categery: "batting",strikeRate: 190.36 },
-            plr5: {name: "Haris Sohail",categery: "batting",strikeRate: 165.25 },
-            plr6: {name: "Haris Rauf",categery: "batting",strikeRate: 177.76 },
-            plr7: {name: "Shaheen Afridi",categery: "allRounder",strikeRate: 160.16 },
-            plr8: {name: "Asif Ali",categery: "allRounder",strikeRate: 180.25 },
-            plr9: {name: "Iftikhar Ahmed",categery: "bowling",strikeRate: 90.76 },
-            plr10: {name: "Mohammad Hasnain",categery: "bowling",strikeRate: 45.30 },
-            plr11: {name: "Usman Qadir",categery: "bowling",strikeRate: 30.21 }
-           }, 
-           
-Afganistan: { plr1: {name: "Mohammad Nabi (C)",categery: "batting",strikeRate: 145.26 },
-           plr2: {name: "Najibullah Zadran",categery: "batting",strikeRate: 160.76 },
-           plr3: {name: "Rahmanullah Gurbaz (Wk)",categery: "batting",strikeRate: 176.23 },
-           plr4: {name: "Azmatullah Omarzai",categery: "batting",strikeRate: 190.36 },
-           plr5: {name: "Darwish Rasooli",categery: "batting",strikeRate: 165.25 },
-           plr6: {name: "Farid Ahmad Malik",categery: "batting",strikeRate: 177.76 },
-           plr7: {name: "Fazal Haq Farooqi",categery: "allRounder",strikeRate: 160.16 },
-           plr8: {name: "Hazratullah Zazai",categery: "allRounder",strikeRate: 180.25 },
-           plr9: {name: "Ibrahim Zadran",categery: "bowling",strikeRate: 90.76 },
-           plr10: {name: "Mujeeb ur Rahman",categery: "bowling",strikeRate: 45.30 },
-           plr11: {name: "Naveen ul Haq",categery: "bowling",strikeRate: 30.21 }
-          },   
+selectMyTeam(myTeam:any)
+{
+  if(this.team1==myTeam )
+  {
+    this.obj.myTeam = myTeam;
+    this.obj.theyTeam = this.team2;
+  }
+  if(this.team2==myTeam)
+  {
+     this.obj.myTeam = myTeam;
+     this.obj.theyTeam = this.team1;
+  }
 
-           }
-          }
+}
+myHeadTail(Headtail:any)
+{
+ this.obj.myHeadTail = Headtail;
+}
 
-]
+makeToss()
+{
+  this.obj.MeWonToss = '';
+  this.obj.TheyWonToss = '';
+  let randomNumber = -1;
+  if(this.obj.myTeam=='')
+  {
+    alert("Select Your Team First.")
+  }
+  else
+  {
+    randomNumber = Math.floor(Math.random() *100);
+    if( +this.obj.myHeadTail==0 && randomNumber%2==0)
+    this.obj.MeWonToss = this.obj.myTeam;
+
+    else if( +this.obj.myHeadTail==1 && randomNumber%2!=0)
+    this.obj.MeWonToss = this.obj.myTeam;
+
+    else this.obj.TheyWonToss = this.obj.theyTeam;
+  }
+}
+
+SelectOvers(overs:any)
+{
+   this.obj.overs = overs;
+}
+
+MeWonToss_BatBol(select:any)
+{
+   this.obj.choose = select;
+}
+
+LetsPlay()
+{
+  this.obj.team1 = this.team1;
+  this.obj.team2 = this.team2;
+
+  if(this.obj.choose!='' && this.obj.choose=='bat')
+  {
+     this.obj.batTeam = this.obj.myTeam;
+     this.obj.bowlTeam = this.obj.theyTeam;
+  }
+  else if(this.obj.choose!='' && this.obj.choose=='bowl')
+  {
+     this.obj.bowlTeam = this.obj.myTeam;
+     this.obj.batTeam = this.obj.theyTeam;
+  }
+  else
+  {
+     this.obj.batTeam = this.obj.myTeam;
+     this.obj.bowlTeam = this.obj.theyTeam;
+  }
+
+  if(this.obj.MeWonToss!='')
+  {
+     this.obj.tosswinteam = this.obj.myTeam;
+  }
+  else
+  {
+    this.obj.tosswinteam = this.obj.theyTeam;
+  }
+
+  localStorage.setItem('live', JSON.stringify(this.obj));
+}
+
 
 
 }

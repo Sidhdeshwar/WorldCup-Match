@@ -34,11 +34,11 @@
               <a class="nav-link active ms-5" aria-current="page" href="#">Australia</a>
             </li>
             <li class="list-group-item d-flex">
-              <img src="../../../assets/SauthAfrika.jpeg" class="rounded-1" alt="..."  height="45" width="60" >
+              <img src="../../../assets/Sauth Africa.png" class="rounded-1" alt="..."  height="45" width="60" >
               <a class="nav-link active ms-5" aria-current="page" href="#">Sauth Africa</a>
             </li>
             <li class="list-group-item d-flex">
-              <img src="../../../assets/WestIndies.jpeg" class="rounded-1" alt="..." height="45" width="60" >
+              <img src="../../../assets/West Indies.png" class="rounded-1" alt="..." height="45" width="60" >
               <a class="nav-link active ms-5" aria-current="page" href="#">West Indies</a>
             </li>
           </ul>
@@ -49,7 +49,7 @@
           <ul class="list-group list-group-flush rounded-0">
             <li class="list-group-item bg-primary text-white text-center fs-4">Group - B</li>
             <li class="list-group-item d-flex">
-              <img src="../../../assets/download.png" class="rounded-1" alt="..." height="45" width="60" >
+              <img src="../../../assets/India.png" class="rounded-1" alt="..." height="45" width="60" >
               <a class="nav-link active ms-5" aria-current="page" href="#">India</a>
             </li>
             <li class="list-group-item d-flex">
@@ -57,11 +57,11 @@
               <a class="nav-link active ms-5" aria-current="page" href="#">Pakistan</a>
             </li>
             <li class="list-group-item d-flex">
-              <img src="../../../assets/NewZaland.png" class="rounded-1" alt="..."  height="45" width="60" >
+              <img src="../../../assets/New Zealand.png" class="rounded-1" alt="..."  height="45" width="60" >
               <a class="nav-link active ms-5" aria-current="page" href="#">New Zealand</a>
             </li>
             <li class="list-group-item d-flex">
-              <img src="../../../assets/Afganistan.jpeg" class="rounded-1" alt="..." height="45" width="60" >
+              <img src="../../../assets/Afganistan.png" class="rounded-1" alt="..." height="45" width="60" >
               <a class="nav-link active ms-5" aria-current="page" href="#">Afganistan</a>
             </li>
           </ul>
@@ -84,7 +84,7 @@
           <tr class="" *ngFor="let obj of ScheduledMatchesOfA">
              <td>{{obj.teams}}</td>
              <td>{{obj.date}}</td>
-             <td><button class="btn btn-primary my-1 border-primary">Play Now</button></td>
+             <td><button class="btn btn-primary my-1 border-primary" routerLink="/start" (click)="PayNow(obj)">Play Now</button></td>
           </tr>
           </tbody>
         </table>

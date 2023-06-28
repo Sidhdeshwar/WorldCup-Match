@@ -7,6 +7,7 @@ import { AllTeamsComponent } from './all-teams/all-teams.component';
 import { StartComponent } from './start/start.component';
 import { LiveMatchComponent } from './live-match/live-match.component';
 import { ResultComponent } from './result/result.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ResultComponent } from './result/result.component';
   ],
   imports: [
     CommonModule,
-    CricketRoutingModule
+    CricketRoutingModule,
+    FormsModule
   ]
 })
 export class CricketModule { }
