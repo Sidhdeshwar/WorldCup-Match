@@ -5,9 +5,8 @@
       Featured
     </div>
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <button class="btn btn-success" (click)="callRandomRuns()">Refresh</button>
+     {{RUN}}
     </div>
   </div>
 </div>
@@ -19,12 +18,12 @@
       <div class="row">
         <div class="col-md-3 d-flex justify-content-center align-items-center" style="height: 100px;">   <img src="{{LIVE.batting.url1}}" class="rounded-1" alt="..." height="45" width="60" > </div>
         <div class="col-md-6 ">
-          <div class="row  d-flex justify-content-start align-items-center" style="height: 50px;"> <div> <input type="radio" name="strike"> &nbsp; Rohit Sharma </div>  </div>
-          <div class="row d-flex justify-content-start align-items-center" style="height: 50px;"><div> <input type="radio" name="strike"> &nbsp; Suryakumar Yadav  </div></div>
+          <div class="row  d-flex justify-content-start align-items-center" style="height: 50px;"> <div> <input type="radio" name="strike" [checked]="NotOutPlayers.index_0.strike"> &nbsp; {{NotOutPlayers.index_0.name }} </div>  </div>
+          <div class="row d-flex justify-content-start align-items-center" style="height: 50px;"><div> <input type="radio" name="strike"  [checked]="NotOutPlayers.index_1.strike"> &nbsp; {{NotOutPlayers.index_1.name }}  </div></div>
         </div>
         <div class="col-md-3 ">
-          <div class="row  d-flex justify-content-start align-items-center fs-4" style="height: 50px;">  <b>23 (8)</b> </div>
-          <div class="row d-flex justify-content-start align-items-center fs-4" style="height: 50px;"> <b>23 (8)</b>  </div>
+          <div class="row  d-flex justify-content-start align-items-center fs-4" style="height: 50px;">  <b>{{NotOutPlayers.index_0.run }} ({{NotOutPlayers.index_0.ball }})</b> </div>
+          <div class="row d-flex justify-content-start align-items-center fs-4" style="height: 50px;"> <b>{{NotOutPlayers.index_0.run }} ({{NotOutPlayers.index_0.ball }})</b>  </div>
         </div>
       </div>
       <!-- *START -->
@@ -34,7 +33,7 @@
       <div class="border rounded-5 text-white" style="height: 80px;" >
          <div class="row text-center rounded-top-5 TOP" style="height: 40px;">
            <!-- ^ TOP -->
-           <div class="text-center"> <b>AUS</b> Vs <b class="fs-3">IND</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b class="fs-3">25/2</b></div>
+           <div class="text-center"> <b>AUS</b> Vs <b class="fs-3">IND</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b class="fs-3">{{LIVE.TOTAL_RUNS}}/{{LIVE.TOTAL_WICKETS}}</b></div>
             <!-- ^ TOP -->
         </div>
          <div class="row text-center rounded-bottom-5 BOTTOM" style="height: 40px;">
@@ -51,13 +50,13 @@
         <div class="col-9">
           <div class="row  d-flex justify-content-start align-items-center ms-1" style="height: 50px;">
             <div class="row">
-             <div class="col-6">Jane S.</div>
-             <div class="col-6 text-end">4.7</div>
+             <div class="col-6"> {{currentBowler.name}}</div>
+             <div class="col-6 text-end">{{currentBowler.over}}.{{0}}</div>
             </div>
            </div>
            <div class="row d-flex justify-content-start align-items-center ms-2" style="height: 50px;">
-             <div>  <button class="btn btn-primary ms-1">0</button>
-               <button class="btn btn-primary ms-1">4</button>
+             <div> 
+               <button class="btn btn-primary ms-1"  *ngFor="let obj of OVER_CHA_ARRAY">{{obj}}</button>
              </div>
            </div>
         </div>

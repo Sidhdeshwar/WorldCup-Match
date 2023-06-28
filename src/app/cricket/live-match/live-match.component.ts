@@ -13,20 +13,31 @@ export class LiveMatchComponent {
     batting: {
                 url1: '',
                 batTeam: '',
-                BatPlayers: [],
+                BatPlayers:[],
              },
     bowling: {
                 url2:'',
                 bowlTeam:'',
-                BolPlayers: Array<plr>,
+                BolPlayers: [],
               },
     overChiMatch: 0,
-    oversWithRuns: Array<Array <number> >
+    oversWithRuns: Array<number>,
+    TOTAL_RUNS:0,
+    TOTAL_WICKETS:0
   }
 
 
   AllTeams1:any[] = [{team:'India',players:India},{team:'Pakistan',players:Pakistan},{team:'Afganistan',players:Afganistan},];
+  randomArray: any [] = [0,1,2,3,4,6,'W','WD','NB','1+WD'];
 
+  NotOutPlayers = {
+    index_0: { name: 'A', run: 0, ball:0 , strike: true},
+    index_1: { name: 'B', run: 0, ball:0 , strike: false},
+  }
+  currentBowler = {name: 'A', run: 0, over:0 };
+
+  X:any;
+  Y:any;
 
   constructor()
   {
@@ -40,8 +51,6 @@ export class LiveMatchComponent {
     this.AssignToLIVE_Batting();
     this.AssignToLIVE_Bowling();
     this.LIVE.overChiMatch = this.obj.overs;
-     console.log(this.LIVE);
-
   }
 
   AssignToLIVE_Batting()
@@ -53,9 +62,21 @@ export class LiveMatchComponent {
           this.LIVE.batting.url1 = `../../../assets/${this.obj.batTeam}.png`;
           this.LIVE.batting.batTeam = this.obj.batTeam ;
           this.LIVE.batting.BatPlayers = this.AllTeams1[i].players;
-         return;
       }
     }
+ this.openerBatting();
+  }
+  openerBatting()
+  {
+    this.X = this.LIVE.batting.BatPlayers[0];
+     this.NotOutPlayers.index_0.name = this.X.name;
+     this.NotOutPlayers.index_0.run = this.X.runs;
+     this.NotOutPlayers.index_0.ball = this.X.bolls;
+     //
+     this.X = this.LIVE.batting.BatPlayers[1];
+      this.NotOutPlayers.index_1.name = this.X.name;
+      this.NotOutPlayers.index_1.run = this.X.runs;
+      this.NotOutPlayers.index_1.ball = this.X.bolls;
   }
   AssignToLIVE_Bowling()
   {
@@ -66,8 +87,25 @@ export class LiveMatchComponent {
           this.LIVE.bowling.url2 = `../../../assets/${this.obj.bowlTeam}.png`;
          this.LIVE.bowling.bowlTeam = this.obj.bowlTeam;
           this.LIVE.bowling.BolPlayers = this.AllTeams1[i].players;
-          break;
       }
     }
+    this.Y = this.LIVE.bowling.BolPlayers[10];
+    console.log(this.Y);
+    
+    this.currentBowler.name = this.Y.name;
+    this.currentBowler.run = this.Y.runs;
+    this.currentBowler.over = this.Y.overs;
+
+  }
+ RUN:any;
+ OVER_CHA_ARRAY: any [] = [];
+ cnt:any;
+  callRandomRuns()
+  {
+    let a =  Math.floor(Math.random()*10) ;
+   this.RUN = this.randomArray[a];
+
+   if(typeof(this.RUN)=='number')
+    this.OVER_CHA_ARRAY.push(this.RUN);
   }
 }
