@@ -56,16 +56,73 @@ export const Afganistan : plr [] = [
           {name: "Naveen ul Haq",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 30.21 }
 ];
 
+export const NewZealend : plr [] = [
+  {name: "Mohammad Nabi (C)",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 145.26 },
+          {name: "Najibullah Zadran",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 160.76 },
+        {name: "Rahmanullah Gurbaz (Wk)",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 176.23 },
+           {name: "Azmatullah Omarzai",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 190.36 },
+          {name: "Darwish Rasooli",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 165.25 },
+         {name: "Farid Ahmad Malik",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 177.76 },
+          {name: "Fazal Haq Farooqi",url:'',categery: "allRounder",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 160.16 },
+          {name: "Hazratullah Zazai",url:'',categery: "allRounder",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 180.25 },
+         {name: "Ibrahim Zadran",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 90.76 },
+           {name: "Mujeeb ur Rahman",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 45.30 },
+          {name: "Naveen ul Haq",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 30.21 }
+];
 
-// export const  TEAMS : plr [] = {
-//   TeamIndia: playersOfIndia ,
-//   TeamPakistan: playersOfPakistan,
-//   TeamAfganistan: playersOfAfganistan
-// }
+export const England : plr [] = [
+  {name: "Mohammad Nabi (C)",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 145.26 },
+          {name: "Najibullah Zadran",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 160.76 },
+        {name: "Rahmanullah Gurbaz (Wk)",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 176.23 },
+           {name: "Azmatullah Omarzai",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 190.36 },
+          {name: "Darwish Rasooli",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 165.25 },
+         {name: "Farid Ahmad Malik",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 177.76 },
+          {name: "Fazal Haq Farooqi",url:'',categery: "allRounder",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 160.16 },
+          {name: "Hazratullah Zazai",url:'',categery: "allRounder",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 180.25 },
+         {name: "Ibrahim Zadran",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 90.76 },
+           {name: "Mujeeb ur Rahman",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 45.30 },
+          {name: "Naveen ul Haq",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 30.21 }
+];
 
+export const Australia : plr [] = [
+  {name: "Mohammad Nabi (C)",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 145.26 },
+          {name: "Najibullah Zadran",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 160.76 },
+        {name: "Rahmanullah Gurbaz (Wk)",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 176.23 },
+           {name: "Azmatullah Omarzai",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 190.36 },
+          {name: "Darwish Rasooli",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 165.25 },
+         {name: "Farid Ahmad Malik",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 177.76 },
+          {name: "Fazal Haq Farooqi",url:'',categery: "allRounder",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 160.16 },
+          {name: "Hazratullah Zazai",url:'',categery: "allRounder",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 180.25 },
+         {name: "Ibrahim Zadran",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 90.76 },
+           {name: "Mujeeb ur Rahman",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 45.30 },
+          {name: "Naveen ul Haq",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 30.21 }
+];
 
-
-
-
+export const SauthAfrica : plr [] = [
+  {name: "Mohammad Nabi (C)",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 145.26 },
+          {name: "Najibullah Zadran",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 160.76 },
+        {name: "Rahmanullah Gurbaz (Wk)",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 176.23 },
+           {name: "Azmatullah Omarzai",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 190.36 },
+          {name: "Darwish Rasooli",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 165.25 },
+         {name: "Farid Ahmad Malik",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 177.76 },
+          {name: "Fazal Haq Farooqi",url:'',categery: "allRounder",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 160.16 },
+          {name: "Hazratullah Zazai",url:'',categery: "allRounder",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 180.25 },
+         {name: "Ibrahim Zadran",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 90.76 },
+           {name: "Mujeeb ur Rahman",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 45.30 },
+          {name: "Naveen ul Haq",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 30.21 }
+];
+export const WestIndies : plr [] = [
+  {name: "Mohammad Nabi (C)",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 145.26 },
+          {name: "Najibullah Zadran",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 160.76 },
+        {name: "Rahmanullah Gurbaz (Wk)",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 176.23 },
+           {name: "Azmatullah Omarzai",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 190.36 },
+          {name: "Darwish Rasooli",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 165.25 },
+         {name: "Farid Ahmad Malik",url:'',categery: "batting",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 177.76 },
+          {name: "Fazal Haq Farooqi",url:'',categery: "allRounder",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 160.16 },
+          {name: "Hazratullah Zazai",url:'',categery: "allRounder",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 180.25 },
+         {name: "Ibrahim Zadran",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 90.76 },
+           {name: "Mujeeb ur Rahman",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 45.30 },
+          {name: "Naveen ul Haq",url:'',categery: "bowling",runs:0, bolls:0,wickets:0,overs:0,runsDeleveredByBowler:0, strikeRate: 30.21 }
+];
 
 //

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Afganistan,India,Pakistan } from  'src/app/store';
+import { Afganistan,Australia,England,India,NewZealend,Pakistan, SauthAfrica, WestIndies } from  'src/app/store';
 import { ALL_TEAMS, plr } from 'src/app/store';
 
 
@@ -19,7 +19,7 @@ url1: any ;
 url2: any = `../../../assets/${this.team2}.png`;
 date :any;
 TwoTeams : any;
-AllTeams1:any[] = [{team:'India',players:India},{team:'Pakistan',players:Pakistan},{team:'Afganistan',players:Afganistan}];
+AllTeams1:any[] = [{team:'India',players:India},{team:'Pakistan',players:Pakistan},{team:'Afganistan',players:Afganistan},{team:'New Zealand',players:NewZealend},{team:'England',players:England}, {team:'Australia',players:Australia}, {team:'Sauth Africa',players:SauthAfrica},{team:'West Indies',players:WestIndies}  ];
 
 obj = {
   team1:this.team1,

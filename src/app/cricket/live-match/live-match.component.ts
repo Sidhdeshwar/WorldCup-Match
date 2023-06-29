@@ -1,6 +1,6 @@
 import { Component, PlatformRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { Afganistan, India, Pakistan, plr } from 'src/app/store';
+import { Afganistan, Australia, England, India, NewZealend, Pakistan, SauthAfrica, WestIndies, plr } from 'src/app/store';
 
 @Component({
   selector: 'app-live-match',
@@ -31,7 +31,7 @@ export class LiveMatchComponent {
   }
 
 
-  AllTeams1:any[] = [{team:'India',players:India},{team:'Pakistan',players:Pakistan},{team:'Afganistan',players:Afganistan},];
+  AllTeams1:any[] = [{team:'India',players:India},{team:'Pakistan',players:Pakistan},{team:'Afganistan',players:Afganistan},{team:'New Zealand',players:NewZealend},{team:'England',players:England}, {team:'Australia',players:Australia},{team:'Sauth Africa',players:SauthAfrica},{team:'West Indies',players:WestIndies} ];
   randomArray: any [] = [0,1,2,3,4,6,'W','WD','NB','1+WD'];
 
   NotOutPlayers = {
@@ -115,7 +115,12 @@ export class LiveMatchComponent {
    }
    if(this.RUN=='W')
    {
-     this.WicketGon()
+     this.WicketGon();
+     if(this.NotOutPlayers.index_0.strike)
+     this.increaseRunsIN_LIVE(0,this.NotOutPlayers.index_0.name);
+
+     if(this.NotOutPlayers.index_1.strike)
+     this.increaseRunsIN_LIVE(0,this.NotOutPlayers.index_1.name);
    }
 
    if(this.RUN=='WD' || this.RUN=='NB')
@@ -206,7 +211,6 @@ nextBatsmanDetails:any;
        this.NotOutPlayers.index_0.run =this.nextBatsmanDetails.runs;
        this.NotOutPlayers.index_0.ball =this.nextBatsmanDetails.bolls;
        this.NotOutPlayers.index_0.strike = true;
-
      }
      if(this.NotOutPlayers.index_1.strike)
      {
