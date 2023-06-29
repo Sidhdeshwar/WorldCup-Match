@@ -41,17 +41,17 @@ export class AllTeamsComponent {
   {
 
    let a : any [] = [];
-   let now = new Date('July 1 2023');
+   let now = new Date();
    var x = new Date();
    let cnt=0;
    let counter = 0;
 for(let i=0 ; i< this.ScheduledMatchesOfA.length ; i++  )
 {
-       now.setDate( new Date('July 1 2023').getDate()+cnt++);
+       now.setDate( new Date().getDate()+cnt++);
        x = now;
        a.push({teams: this.ScheduledMatchesOfA[i], date: x.toDateString()});
        console.log(now);
-      now.setDate( new Date('July 1 2023').getDate()+cnt++);
+      now.setDate( new Date().getDate()+cnt++);
       x = now;
        a.push({teams: this.ScheduledMatchesOfB[i], date: x.toDateString()});
 }
@@ -62,7 +62,7 @@ return a;
   {
     this.ScheduledMatchesOfA = [];
     this.ScheduledMatchesOfB = [];
-    let now = new Date('Jul 1 2023')
+    let now = new Date()
      for(let i=0 ; i<this.FinalSchedule.length ; i++)
      {
         for(let j=0 ; j<this.GroupA.length ; j++)
@@ -101,7 +101,7 @@ return a;
      {
        arr[i].teams = a[i];
      }
-     
+
      return arr;
   }
 
