@@ -21,7 +21,7 @@ export class LiveMatchComponent {
                 BolPlayers: [],
               },
     overChiMatch: 0,
-    oversWithRuns: Array<number>,
+    RUNS_ARRAY: [0],
     TOTAL_RUNS:0,
     TOTAL_WICKETS:0
   }
@@ -106,6 +106,49 @@ export class LiveMatchComponent {
    this.RUN = this.randomArray[a];
 
    if(typeof(this.RUN)=='number')
+   {
     this.OVER_CHA_ARRAY.push(this.RUN);
+    this.increasePlayerRuns(this.RUN);
+    this.increaseScoreBoard(this.RUN);
+   }
+
   }
+  increasePlayerRuns(run:any)
+  {
+    if(this.NotOutPlayers.index_0.strike)
+    {
+       this.NotOutPlayers.index_0.run +=run;
+       this.NotOutPlayers.index_0.ball +=1;
+       if(run%2!=0)
+       {
+         this.NotOutPlayers.index_0.strike = (!this.NotOutPlayers.index_0.strike);
+         this.NotOutPlayers.index_1.strike = (!this.NotOutPlayers.index_1.strike);
+         return;
+       }
+    }
+    if(this.NotOutPlayers.index_1.strike)
+    {
+       this.NotOutPlayers.index_1.run +=run;
+       this.NotOutPlayers.index_1.ball +=1;
+       if(run%2!=0)
+       {
+         this.NotOutPlayers.index_0.strike = (!this.NotOutPlayers.index_0.strike);
+         this.NotOutPlayers.index_1.strike = (!this.NotOutPlayers.index_1.strike);
+         return;
+       }
+    }
+  }
+
+  increaseScoreBoard(run:any)
+  {
+    this.LIVE.RUNS_ARRAY.push(run);
+    let a = 0;
+    for(let i=0 ; i<this.LIVE.RUNS_ARRAY.length ; i++)
+    {
+       a+= this.LIVE.RUNS_ARRAY[i]; 
+    }
+    this.LIVE.TOTAL_RUNS = a;
+  }
+
+  
 }
