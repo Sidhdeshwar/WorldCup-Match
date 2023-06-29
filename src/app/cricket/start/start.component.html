@@ -17,7 +17,7 @@
   <div class="container">
     <div class="card">
       <div class="card-header">
-        <button class="btn btn-warning" (click)="ShowTeam1()" >Check Playing-11 ({{team1}} / {{team2}})</button><br>
+        <button class="btn btn-warning" (click)="ShowTeam1()" >Click To Check Playing-11 ({{team1}} / {{team2}})</button><br>
       </div>
       <div class="card-body">
        <div class="row">
@@ -60,15 +60,22 @@
         &nbsp; &nbsp;  <input type="radio" #BAT value="bat" name="batbowl" (change)="MeWonToss_BatBol(BAT.value)" > Bat
          <input type="radio" #BOWL value="bowl" name="batbowl" (change)="MeWonToss_BatBol(BOWL.value)" > Bowl
         <br>
-        <div class="w-25 text-center "> <select class="form-select" #OVERS aria-label="Default select example" (change)="SelectOvers(OVERS.value)">
-          <option selected>Select the Overs</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-        </select></div>
-        <button class="btn btn-success rounded-0 m-2" routerLink="/live-match" (click)="LetsPlay()" [disabled]="obj.overs==0">Let's Play</button>
+        <div class="row text-center">
+          <div class="col-4"></div>
+          <div class="col-4">
+            <select class="form-select" #OVERS aria-label="Default select example" (change)="SelectOvers(OVERS.value)">
+              <option selected>Select the Overs</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+          <div class="col-4"></div>
+
+      </div>
+        <button class="btn btn-success rounded-0 m-2" routerLink="/live-match" (click)="LetsPlay()" [disabled]="obj.overs==4">Let's Play</button>
       </div>
       <div *ngIf="obj.TheyWonToss!=''" class="text-center mt-3">
         <b class="text-danger">{{obj.TheyWonToss}} Won the Toss & Decided to Bowl first.</b>
@@ -77,10 +84,10 @@
       </div>
       <!-- * TOSS -->
 <br>
-       <div class="row" *ngIf="Team1.length">
+       <div class="row" *ngIf="SHOWHIDE">
         <hr>
         <div class="col-md-6">
-          <div class="text-center text-primary"><b>List of Players - {{team2}}</b></div>
+          <div class="text-center text-primary"><b>List of Players - {{team1}}</b></div>
           <table class="table table-bordered table-sm "  >
             <thead class="table-danger">
               <tr>
@@ -101,7 +108,7 @@
           </table>
         </div>
         <div class="col-md-6">
-           <div class="text-center text-primary"><b>List of Players - {{team2}}</b></div>
+           <div class="text-center text-danger"><b>List of Players - {{team2}}</b></div>
          <table class="table table-bordered table-sm "  >
           <thead class="table-danger">
             <tr>

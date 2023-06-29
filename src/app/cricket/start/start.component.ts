@@ -20,7 +20,7 @@ url2: any = `../../../assets/${this.team2}.png`;
 date :any;
 TwoTeams : any;
 AllTeams1:any[] = [{team:'India',players:India},{team:'Pakistan',players:Pakistan},{team:'Afganistan',players:Afganistan},{team:'New Zealand',players:NewZealend},{team:'England',players:England}, {team:'Australia',players:Australia}, {team:'Sauth Africa',players:SauthAfrica},{team:'West Indies',players:WestIndies}  ];
-
+SHOWHIDE:boolean = false;
 obj = {
   team1:this.team1,
   team2:this.team2,
@@ -65,6 +65,8 @@ ShowTeam1()
          this.Team2 = this.AllTeams1[i].players;
       }
    }
+
+   this.SHOWHIDE = !this.SHOWHIDE;
 }
 
 selectMyTeam(myTeam:any)
