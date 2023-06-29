@@ -4,7 +4,7 @@
         <ul class="navbar-nav">
           <li class="nav-item">
 
-            <a class="nav-link active" aria-current="page" href="#">India</a>
+            <a class="nav-link active" aria-current="page" href="#"></a>
           </li>
 
   <!-- ************************* -->
@@ -39,8 +39,6 @@
            Select :  <input type="radio" #Head value="0" name="headTail" (change)="myHeadTail(Head.value)" > Head
             <input type="radio" #Tail value="1" name="headTail" (change)="myHeadTail(Tail.value)" > Tail
             <button class="btn btn-info rounded-0 mt-2" (click)="makeToss()" [disabled]="obj.myHeadTail==''">Make Toss</button>
-
-
         </div>
         <div class="col-md-5">
           <div class="card w-75" >
@@ -64,12 +62,13 @@
         <br>
         <div class="w-25 text-center "> <select class="form-select" #OVERS aria-label="Default select example" (change)="SelectOvers(OVERS.value)">
           <option selected>Select the Overs</option>
-          <option value="1">1</option>
           <option value="2">2</option>
-          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="5">5</option>
           <option value="10">10</option>
+          <option value="20">20</option>
         </select></div>
-        <button class="btn btn-success rounded-0 m-2" routerLink="/live-match" (click)="LetsPlay()">Let's Play</button>
+        <button class="btn btn-success rounded-0 m-2" routerLink="/live-match" (click)="LetsPlay()" [disabled]="obj.overs==0">Let's Play</button>
       </div>
       <div *ngIf="obj.TheyWonToss!=''" class="text-center mt-3">
         <b class="text-danger">{{obj.TheyWonToss}} Won the Toss & Decided to Bowl first.</b>

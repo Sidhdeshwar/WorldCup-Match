@@ -1,1 +1,64 @@
-<p>result works!</p>
+<div class="container mt-5">
+  <div class="card" style="height: 400px;">
+    <div class="card-header">
+    <div class="text-center fs-4"><b> MATCH SUMMARY</b></div>
+    </div>
+    <div class="card-body">
+<div class="row">
+  <div class="col-md-6">
+    <div class="text-center text-primary"><b>{{LIVE.batting.batTeam | uppercase}}</b></div>
+    <table class="table">
+      <thead class="table-primary">
+        <tr>
+          <th scope="col">SR.NO.</th>
+          <th scope="col">NAME</th>
+          <th scope="col">RUNS</th>
+          <th scope="col">BALLS</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let obj of BATTING ; let i=index">
+        <tr *ngIf="obj.bolls!=0">
+          <th scope="row"> {{i+1}} </th>
+          <td>{{obj.name}}</td>
+          <td>{{obj.runs}}</td>
+          <td>{{obj.bolls}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <div class="text-center text-success"><b>{{LIVE.bowling.bowlTeam | uppercase}}</b></div>
+    <table class="table">
+      <thead class="table-primary">
+        <tr>
+          <th scope="col">SR.NO.</th>
+          <th scope="col">NAME</th>
+          <th scope="col">RUNS</th>
+          <th scope="col">OVERS</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let obj of BALLING ; let i=index">
+        <tr *ngIf="obj.overs!=0">
+          <th scope="row"> {{i+1}} </th>
+          <td>{{obj.name}}</td>
+          <td>{{obj.runsDeleveredByBowler}}</td>
+          <td>{{obj.overs}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<table class="table">
+  <thead class="table-danger">
+    <tr>
+      <th scope="col" class="text-primary">Score : {{TOTALRUNS}}/{{LIVE.TOTAL_WICKETS}}  </th>
+      <th scope="col" class="text-primary">Overs : {{LIVE.overChiMatch}}</th>
+      <th scope="col" class="text-primary">Wide : {{LIVE.wide}}</th>
+      <th scope="col" class="text-primary">No Ball : {{LIVE.No_Ball}}</th>
+    </tr>
+  </thead>
+
+</table>
+    </div>
+  </div>
+</div>

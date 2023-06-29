@@ -1,4 +1,5 @@
 import { Component, PlatformRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { Afganistan, India, Pakistan, plr } from 'src/app/store';
 
 @Component({
@@ -13,17 +14,20 @@ export class LiveMatchComponent {
     batting: {
                 url1: '',
                 batTeam: '',
-                BatPlayers:[],
+                BatPlayers:[{}],
              },
     bowling: {
                 url2:'',
                 bowlTeam:'',
-                BolPlayers: [],
+                BolPlayers: [{}],
               },
     overChiMatch: 0,
     RUNS_ARRAY: [0],
     TOTAL_RUNS:0,
-    TOTAL_WICKETS:0
+    TOTAL_WICKETS:0,
+    wide:0,
+    No_Ball:0,
+    currentOver:0
   }
 
 
@@ -34,19 +38,18 @@ export class LiveMatchComponent {
     index_0: { name: 'A', run: 0, ball:0 , strike: true},
     index_1: { name: 'B', run: 0, ball:0 , strike: false},
   }
-  currentBowler = {name: 'A', run: 0, over:0 };
+  currentBowler = {name: 'A', run: 0, over:0, wickets:0 };
 
   X:any;
   Y:any;
 
-  constructor()
+  constructor(private route:Router)
   {
     let a = localStorage.getItem('live');
     if(a!=null)
     {
        this.obj = JSON.parse(a);
        console.log(this.obj);
-
     }
     this.AssignToLIVE_Batting();
     this.AssignToLIVE_Bowling();
@@ -78,6 +81,7 @@ export class LiveMatchComponent {
       this.NotOutPlayers.index_1.run = this.X.runs;
       this.NotOutPlayers.index_1.ball = this.X.bolls;
   }
+  changeBowler:any = 10;
   AssignToLIVE_Bowling()
   {
     for(let i=0 ; i<this.AllTeams1.length ; i++)
@@ -89,9 +93,8 @@ export class LiveMatchComponent {
           this.LIVE.bowling.BolPlayers = this.AllTeams1[i].players;
       }
     }
-    this.Y = this.LIVE.bowling.BolPlayers[10];
+    this.Y = this.LIVE.bowling.BolPlayers[this.changeBowler];
     console.log(this.Y);
-    
     this.currentBowler.name = this.Y.name;
     this.currentBowler.run = this.Y.runs;
     this.currentBowler.over = this.Y.overs;
@@ -104,14 +107,36 @@ export class LiveMatchComponent {
   {
     let a =  Math.floor(Math.random()*10) ;
    this.RUN = this.randomArray[a];
-
+   this.addIn1OverArray(this.RUN);
    if(typeof(this.RUN)=='number')
    {
-    this.OVER_CHA_ARRAY.push(this.RUN);
     this.increasePlayerRuns(this.RUN);
     this.increaseScoreBoard(this.RUN);
    }
+   if(this.RUN=='W')
+   {
+     this.WicketGon()
+   }
 
+   if(this.RUN=='WD' || this.RUN=='NB')
+   {
+     this.giveWideORNoBall(this.RUN);
+   }
+
+  }
+  // ^ WIDE OR NO Ball
+
+  giveWideORNoBall(wideNOBall:any)
+  {
+    if(wideNOBall=='WD')
+    {
+       this.LIVE.wide +=1;
+    }
+    if(wideNOBall=='NB')
+    {
+       this.LIVE.No_Ball +=1;
+    }
+    this.increaseScoreBoard(1);
   }
   increasePlayerRuns(run:any)
   {
@@ -119,6 +144,7 @@ export class LiveMatchComponent {
     {
        this.NotOutPlayers.index_0.run +=run;
        this.NotOutPlayers.index_0.ball +=1;
+       this.increaseRunsIN_LIVE(run,this.NotOutPlayers.index_0.name);
        if(run%2!=0)
        {
          this.NotOutPlayers.index_0.strike = (!this.NotOutPlayers.index_0.strike);
@@ -130,6 +156,7 @@ export class LiveMatchComponent {
     {
        this.NotOutPlayers.index_1.run +=run;
        this.NotOutPlayers.index_1.ball +=1;
+       this.increaseRunsIN_LIVE(run,this.NotOutPlayers.index_1.name);
        if(run%2!=0)
        {
          this.NotOutPlayers.index_0.strike = (!this.NotOutPlayers.index_0.strike);
@@ -138,6 +165,22 @@ export class LiveMatchComponent {
        }
     }
   }
+  //* Increase Runs in Main LIVE OBJ;
+copy11Batsmans:any[] = [];
+  increaseRunsIN_LIVE(run:any, name:any)
+  {
+    this.copy11Batsmans = this.LIVE.batting.BatPlayers;
+     for(let i=0 ; i<this.copy11Batsmans.length ; i++)
+     {
+       if(this.copy11Batsmans[i].name==name)
+       {
+         this.copy11Batsmans[i].runs +=run;
+         this.copy11Batsmans[i].bolls +=1;
+       }
+     }
+     this.LIVE.batting.BatPlayers = this.copy11Batsmans ;
+     this.increaseDeleveredRuns(run);
+  }
 
   increaseScoreBoard(run:any)
   {
@@ -145,10 +188,92 @@ export class LiveMatchComponent {
     let a = 0;
     for(let i=0 ; i<this.LIVE.RUNS_ARRAY.length ; i++)
     {
-       a+= this.LIVE.RUNS_ARRAY[i]; 
+       a+= this.LIVE.RUNS_ARRAY[i];
     }
     this.LIVE.TOTAL_RUNS = a;
   }
+// ! WICKET GOWN
+nextBatsman:any = 2;
+nextBatsmanDetails:any;
+  WicketGon()
+  {
+     this.LIVE.TOTAL_WICKETS +=1;
+     if(this.NotOutPlayers.index_0.strike)
+     {
+      alert(this.NotOutPlayers.index_0.name + " Out on "+ this.NotOutPlayers.index_0.run + " runs")
+      this.nextBatsmanDetails = this.LIVE.batting.BatPlayers[this.nextBatsman];
+       this.NotOutPlayers.index_0.name =this.nextBatsmanDetails.name;
+       this.NotOutPlayers.index_0.run =this.nextBatsmanDetails.runs;
+       this.NotOutPlayers.index_0.ball =this.nextBatsmanDetails.bolls;
+       this.NotOutPlayers.index_0.strike = true;
 
-  
+     }
+     if(this.NotOutPlayers.index_1.strike)
+     {
+      alert(this.NotOutPlayers.index_1.name + " Out on "+ this.NotOutPlayers.index_1.run + " runs")
+      this.nextBatsmanDetails = this.LIVE.batting.BatPlayers[this.nextBatsman];
+       this.NotOutPlayers.index_1.name =this.nextBatsmanDetails.name;
+       this.NotOutPlayers.index_1.run =this.nextBatsmanDetails.runs;
+       this.NotOutPlayers.index_1.ball =this.nextBatsmanDetails.bolls;
+       this.NotOutPlayers.index_1.strike = true;
+
+     }
+     this.nextBatsman++;
+  }
+
+//* Bolling LineUp :
+//? BALLING
+BALL:number = 1;
+
+addIn1OverArray(run:any)
+{
+   this.OVER_CHA_ARRAY.push(run);
+   if(typeof(run)=='number'|| run=='W')
+   {
+     this.BALL++;
+   }
+   if(this.BALL==7)
+   {
+     alert("Over Complete");
+     this.LIVE.currentOver+=1;
+     this.BALL = 1;
+     this.OVER_CHA_ARRAY= [];
+    //  ~ Overs Added
+     this.BalllingPlayers = this.LIVE.bowling.BolPlayers;
+     this.BalllingPlayers[this.changeBowler].overs +=1;
+     this.LIVE.bowling.BolPlayers = this.BalllingPlayers;
+// ~~~~~~~~~~~~~~~~~~~~
+     this.Y = this.LIVE.bowling.BolPlayers[--this.changeBowler];
+     this.currentBowler.name = this.Y.name;
+     this.currentBowler.name = this.Y.name;
+     this.checkIfMatchEND()
+   }
+}
+//! MATCH END
+checkIfMatchEND()
+{
+  if(this.LIVE.currentOver==this.LIVE.overChiMatch)
+  {
+    alert("MATCH ENDS");
+    localStorage.setItem('matchEnds', JSON.stringify(this.LIVE));
+this.route.navigateByUrl('/result')
+  }
+}
+BalllingPlayers:any[] = [];
+increaseDeleveredRuns(run:any)
+{
+  this.BalllingPlayers = this.LIVE.bowling.BolPlayers;
+  for(let i=0 ; i<this.BalllingPlayers.length ; i++)
+  {
+    if(this.currentBowler.name==this.BalllingPlayers[i].name)
+    {
+       this.BalllingPlayers[i].runsDeleveredByBowler += run;
+       this.currentBowler.run += this.BalllingPlayers[i].runsDeleveredByBowler;
+       this.currentBowler.over += this.BalllingPlayers[i].overs;
+    }
+  }
+  this.LIVE.bowling.BolPlayers = this.BalllingPlayers;
+}
+
+
 }

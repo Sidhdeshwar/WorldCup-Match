@@ -2,11 +2,11 @@
 <div class="container mt-5">
   <div class="card" style="height: 400px;">
     <div class="card-header">
-      Featured
+      <div class="text-center fs-4 text-primary"><b> LIVE STREAMING</b></div>
     </div>
     <div class="card-body">
-      <button class="btn btn-success" (click)="callRandomRuns()">Refresh</button>
-     {{RUN}}
+
+       <div class="text-center fs-1"><b>{{ RUN }}</b> <br>  <button class="btn btn-success" (click)="callRandomRuns()">Ckick Me</button></div>
     </div>
   </div>
 </div>
@@ -33,12 +33,12 @@
       <div class="border rounded-5 text-white" style="height: 80px;" >
          <div class="row text-center rounded-top-5 TOP" style="height: 40px;">
            <!-- ^ TOP -->
-           <div class="text-center"> <b>AUS</b> Vs <b class="fs-3">IND</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b class="fs-3">{{LIVE.TOTAL_RUNS}}/{{LIVE.TOTAL_WICKETS}}</b></div>
+           <div class="text-center"> <b>{{LIVE.bowling.bowlTeam.substring(0,3) | uppercase}}</b> Vs <b class="fs-3">{{LIVE.batting.batTeam.substring(0,3) | uppercase}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b class="fs-3">{{LIVE.TOTAL_RUNS}}/{{LIVE.TOTAL_WICKETS}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Over : {{LIVE.currentOver}}.{{BALL-1}} &nbsp;&nbsp;&nbsp;({{LIVE.overChiMatch}})</div>
             <!-- ^ TOP -->
         </div>
          <div class="row text-center rounded-bottom-5 BOTTOM" style="height: 40px;">
      <!-- ^ BOTTOM -->
-     <div class="text-center pt-2"> RUN RATE &nbsp; <b>4.00</b></div>
+     <div class="text-center pt-2"> RUN RATE &nbsp; <b>4.00</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( WD- {{LIVE.wide}} &nbsp;&nbsp;&nbsp; NB- {{LIVE.No_Ball}} )</div>
      <!-- ^ BOTTOM -->
         </div>
       </div>
@@ -51,12 +51,12 @@
           <div class="row  d-flex justify-content-start align-items-center ms-1" style="height: 50px;">
             <div class="row">
              <div class="col-6"> {{currentBowler.name}}</div>
-             <div class="col-6 text-end">{{currentBowler.over}}.{{0}}</div>
+             <div class="col-6 text-end">{{currentBowler.over}}.{{BALL-1}}</div>
             </div>
            </div>
-           <div class="row d-flex justify-content-start align-items-center ms-2" style="height: 50px;">
-             <div> 
-               <button class="btn btn-primary ms-1"  *ngFor="let obj of OVER_CHA_ARRAY">{{obj}}</button>
+           <div class="row d-flex justify-content-start align-items-center" style="height: 50px;">
+             <div>
+               <button class="btn btn-primary btn-sm ms-1"  *ngFor="let obj of OVER_CHA_ARRAY">{{obj}}</button>
              </div>
            </div>
         </div>
@@ -69,6 +69,5 @@
     </div>
   </div>
 </div>
-
 
 <!--  -->

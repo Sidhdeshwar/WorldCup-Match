@@ -19,7 +19,7 @@ url1: any ;
 url2: any = `../../../assets/${this.team2}.png`;
 date :any;
 TwoTeams : any;
-AllTeams1:any[] = [{team:'India',players:India},{team:'Pakistan',players:Pakistan},{team:'Afganistan',players:Afganistan},];
+AllTeams1:any[] = [{team:'India',players:India},{team:'Pakistan',players:Pakistan},{team:'Afganistan',players:Afganistan}];
 
 obj = {
   team1:this.team1,
