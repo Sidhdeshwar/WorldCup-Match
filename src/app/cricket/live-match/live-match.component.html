@@ -38,7 +38,8 @@
         </div>
          <div class="row text-center rounded-bottom-5 BOTTOM" style="height: 40px;">
      <!-- ^ BOTTOM -->
-     <div class="text-center pt-2"> RUN RATE &nbsp; <b>4.00</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( WD- {{LIVE.wide}} &nbsp;&nbsp;&nbsp; NB- {{LIVE.No_Ball}} )</div>
+     <div class="text-center pt-2"*ngIf="LIVE.currentOver!=0" > RUN RATE &nbsp; <b> {{RUN_RATE}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( WD- {{LIVE.wide}} &nbsp;&nbsp;&nbsp; NB- {{LIVE.No_Ball}} )</div>
+     <div class="text-center pt-2" *ngIf="LIVE.currentOver==0"> RUN RATE &nbsp; <b>{{LIVE.TOTAL_RUNS}}.00</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( WD- {{LIVE.wide}} &nbsp;&nbsp;&nbsp; NB- {{LIVE.No_Ball}} )</div>
      <!-- ^ BOTTOM -->
         </div>
       </div>

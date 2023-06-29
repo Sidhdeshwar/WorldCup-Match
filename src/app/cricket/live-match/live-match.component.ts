@@ -21,7 +21,7 @@ export class LiveMatchComponent {
                 bowlTeam:'',
                 BolPlayers: [{}],
               },
-    overChiMatch: 0,
+    overChiMatch: 4,
     RUNS_ARRAY: [0],
     TOTAL_RUNS:0,
     TOTAL_WICKETS:0,
@@ -32,12 +32,13 @@ export class LiveMatchComponent {
 
 
   AllTeams1:any[] = [{team:'India',players:India},{team:'Pakistan',players:Pakistan},{team:'Afganistan',players:Afganistan},{team:'New Zealand',players:NewZealend},{team:'England',players:England}, {team:'Australia',players:Australia},{team:'Sauth Africa',players:SauthAfrica},{team:'West Indies',players:WestIndies} ];
-  randomArray: any [] = [0,1,2,3,4,6,'W','WD','NB','1+WD'];
+  randomArray: any [] = [0,1,2,3,4,6,'W','WD','NB',0];
 
   NotOutPlayers = {
     index_0: { name: 'A', run: 0, ball:0 , strike: true},
     index_1: { name: 'B', run: 0, ball:0 , strike: false},
   }
+
   currentBowler = {name: 'A', run: 0, over:0, wickets:0 };
 
   X:any;
@@ -103,31 +104,33 @@ export class LiveMatchComponent {
  RUN:any;
  OVER_CHA_ARRAY: any [] = [];
  cnt:any;
+ RUN_RATE:any = 0.00;
   callRandomRuns()
   {
     let a =  Math.floor(Math.random()*10) ;
    this.RUN = this.randomArray[a];
    this.addIn1OverArray(this.RUN);
+   if(this.RUN=='W')
+   {
+    if(this.NotOutPlayers.index_0.strike)
+    this.increaseRunsIN_LIVE(0,this.NotOutPlayers.index_0.name);
+
+    if(this.NotOutPlayers.index_1.strike)
+    this.increaseRunsIN_LIVE(0,this.NotOutPlayers.index_1.name);
+
+     this.WicketGon();
+   }
    if(typeof(this.RUN)=='number')
    {
     this.increasePlayerRuns(this.RUN);
     this.increaseScoreBoard(this.RUN);
    }
-   if(this.RUN=='W')
-   {
-     this.WicketGon();
-     if(this.NotOutPlayers.index_0.strike)
-     this.increaseRunsIN_LIVE(0,this.NotOutPlayers.index_0.name);
 
-     if(this.NotOutPlayers.index_1.strike)
-     this.increaseRunsIN_LIVE(0,this.NotOutPlayers.index_1.name);
-   }
 
    if(this.RUN=='WD' || this.RUN=='NB')
    {
      this.giveWideORNoBall(this.RUN);
    }
-
   }
   // ^ WIDE OR NO Ball
 
@@ -234,8 +237,16 @@ addIn1OverArray(run:any)
    this.OVER_CHA_ARRAY.push(run);
    if(typeof(run)=='number'|| run=='W')
    {
-     this.BALL++;
+     let y= ((this.BALL-1) * 1.5)
+     console.log("y : ",y);
+
+     let x = `${this.LIVE.currentOver}.${Math.ceil(y)}`;
+     console.log("x : ",x);
+  this.RUN_RATE = this.LIVE.TOTAL_RUNS/+x;
+  this.RUN_RATE = this.RUN_RATE.toFixed(2)
+  this.BALL++;
    }
+
    if(this.BALL==7)
    {
      alert("Over Complete");

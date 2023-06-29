@@ -1,17 +1,18 @@
 <div class="container mt-5">
-  <div class="card" style="height: 400px;">
+  <div class="card" >
     <div class="card-header">
     <div class="text-center fs-4"><b> MATCH SUMMARY</b></div>
     </div>
     <div class="card-body">
 <div class="row">
   <div class="col-md-6">
-    <div class="text-center text-primary"><b>{{LIVE.batting.batTeam | uppercase}}</b></div>
+    <div class="text-start text-primary">   <img src="{{LIVE.batting.url1}}" class="rounded-1" alt="..." height="45" width="60" > </div>
+    <div class="text-center text-primary p-2"><b>{{LIVE.batting.batTeam | uppercase}} </b> (Batting)</div>
     <table class="table">
       <thead class="table-primary">
         <tr>
           <th scope="col">SR.NO.</th>
-          <th scope="col">NAME</th>
+          <th scope="col">BATSMAN NAME</th>
           <th scope="col">RUNS</th>
           <th scope="col">BALLS</th>
         </tr>
@@ -27,12 +28,13 @@
     </table>
   </div>
   <div class="col-md-6">
-    <div class="text-center text-success"><b>{{LIVE.bowling.bowlTeam | uppercase}}</b></div>
+    <div class="text-start text-primary">   <img src="{{LIVE.bowling.url2}}" class="rounded-1" alt="..." height="45" width="60" > </div>
+    <div class="text-center text-success p-2"><b>{{LIVE.bowling.bowlTeam | uppercase}}</b> (Bowling)</div>
     <table class="table">
       <thead class="table-primary">
         <tr>
           <th scope="col">SR.NO.</th>
-          <th scope="col">NAME</th>
+          <th scope="col">BOWLLER NAME</th>
           <th scope="col">RUNS</th>
           <th scope="col">OVERS</th>
         </tr>
@@ -57,8 +59,9 @@
       <th scope="col" class="text-primary">No Ball : {{LIVE.No_Ball}}</th>
     </tr>
   </thead>
-
 </table>
+<br>
+<div class="bg-primary text-center text-white"> {{LIVE.bowling.bowlTeam | uppercase}} needs  {{TOTALRUNS+1}} runs to win. </div>
     </div>
   </div>
 </div>

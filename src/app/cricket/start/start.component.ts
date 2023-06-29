@@ -30,7 +30,7 @@ obj = {
   MeWonToss:'',
   TheyWonToss:'',
   choose:'',
-  overs:0,
+  overs:4,
   tosswinteam:'',
   batTeam:'',
   bowlTeam:''
