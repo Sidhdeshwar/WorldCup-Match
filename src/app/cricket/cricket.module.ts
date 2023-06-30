@@ -8,6 +8,7 @@ import { StartComponent } from './start/start.component';
 import { LiveMatchComponent } from './live-match/live-match.component';
 import { ResultComponent } from './result/result.component';
 import { FormsModule } from '@angular/forms';
+import { FinalResultComponent } from './final-result/final-result.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     AllTeamsComponent,
     StartComponent,
     LiveMatchComponent,
-    ResultComponent
+    ResultComponent,
+    FinalResultComponent
   ],
   imports: [
     CommonModule,

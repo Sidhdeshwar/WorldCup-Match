@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="card" >
     <div class="card-header">
-    <div class="text-center fs-4"><b> MATCH SUMMARY</b></div>
+    <div class="text-center fs-4"><b> MATCH SUMMARY</b> (First Inning)</div>
     </div>
     <div class="card-body">
 <div class="row">
@@ -61,7 +61,14 @@
   </thead>
 </table>
 <br>
-<div class="bg-primary text-center text-white"> {{LIVE.bowling.bowlTeam | uppercase}} needs  {{TOTALRUNS+1}} runs to win. </div>
+<div class="bg-primary text-center text-white"> {{LIVE.bowling.bowlTeam | uppercase}} needs  {{TOTALRUNS+1}} runs to win. </div><br>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+ <button class="btn btn-warning w-100 text-danger border border-danger shadow-lg fs-3" (click)="StartSecondEning()"><b>Start Now</b></button>
+  </div>
+  <div class="col-md-4"></div>
+</div>
     </div>
   </div>
 </div>

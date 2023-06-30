@@ -4,6 +4,7 @@ import { AllTeamsComponent } from './all-teams/all-teams.component';
 import { StartComponent } from './start/start.component';
 import { LiveMatchComponent } from './live-match/live-match.component';
 import { ResultComponent } from './result/result.component';
+import { FinalResultComponent } from './final-result/final-result.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,11 @@ const routes: Routes = [
       {
          path: 'result',
          component: ResultComponent
-      }
+      },
+      {
+        path: 'final-result',
+        component: FinalResultComponent
+     }
     ]
   }
 ];

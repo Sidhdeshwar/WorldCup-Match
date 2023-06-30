@@ -40,8 +40,13 @@
      <!-- ^ BOTTOM -->
      <div class="text-center pt-2"*ngIf="LIVE.currentOver!=0" > RUN RATE &nbsp; <b> {{RUN_RATE}}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( WD- {{LIVE.wide}} &nbsp;&nbsp;&nbsp; NB- {{LIVE.No_Ball}} )</div>
      <div class="text-center pt-2" *ngIf="LIVE.currentOver==0"> RUN RATE &nbsp; <b>{{LIVE.TOTAL_RUNS}}.00</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( WD- {{LIVE.wide}} &nbsp;&nbsp;&nbsp; NB- {{LIVE.No_Ball}} )</div>
+
+
      <!-- ^ BOTTOM -->
         </div>
+      <p class="text-dark" *ngIf="obj.MeWonToss && LIVE.First_Ening_RUNS==0"> You ( {{obj.MeWonToss}} )  win toss & decided to {{obj.choose}} first.</p>
+      <p class="text-dark" *ngIf="obj.TheyWonToss && LIVE.First_Ening_RUNS==0">  {{obj.TheyWonToss}}  win toss & decided to bowl first.</p>
+      <p class="text-dark" *ngIf="LIVE.First_Ening_RUNS!=0"> {{LIVE.batting.batTeam }} needs {{(LIVE.First_Ening_RUNS + 1) - LIVE.TOTAL_RUNS}} runs in {{LIVE.overChiMatch * 6}} bolls</p>
       </div>
       <!-- *Middle -->
     </div>

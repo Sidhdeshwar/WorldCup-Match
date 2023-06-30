@@ -9,8 +9,8 @@ import { Afganistan, Australia, England, India, NewZealend, Pakistan, SauthAfric
 })
 export class LiveMatchComponent {
 
-  obj:any;
-  LIVE = {
+  obj:any = {MeWonToss: false }
+  LIVE :any = {
     batting: {
                 url1: '',
                 batTeam: '',
@@ -27,7 +27,9 @@ export class LiveMatchComponent {
     TOTAL_WICKETS:0,
     wide:0,
     No_Ball:0,
-    currentOver:0
+    currentOver:0,
+    First_Ening_RUNS:0,
+    Second_Ening_RUNS:0
   }
 
 
@@ -46,15 +48,26 @@ export class LiveMatchComponent {
 
   constructor(private route:Router)
   {
-    let a = localStorage.getItem('live');
-    if(a!=null)
+    let firstEnning = localStorage.getItem('firstEnning');
+    let secondEnning = localStorage.getItem('secondEnning');
+
+    if(secondEnning!=null)
     {
-       this.obj = JSON.parse(a);
-       console.log(this.obj);
+        this.LIVE = JSON.parse(secondEnning);
+        this.openerBatting();
+        this.openingBowler();
+        console.log(this.LIVE);
+
     }
-    this.AssignToLIVE_Batting();
-    this.AssignToLIVE_Bowling();
-    this.LIVE.overChiMatch = this.obj.overs;
+    else
+    {
+       this.obj = firstEnning && JSON.parse(firstEnning);
+       console.log("Live : ",this.obj);
+       this.AssignToLIVE_Batting();
+       this.AssignToLIVE_Bowling();
+       this.LIVE.overChiMatch = this.obj.overs;
+    }
+
   }
 
   AssignToLIVE_Batting()
@@ -94,12 +107,15 @@ export class LiveMatchComponent {
           this.LIVE.bowling.BolPlayers = this.AllTeams1[i].players;
       }
     }
+    this.openingBowler();
+  }
+  //! OPENING Bowller
+  openingBowler()
+  {
     this.Y = this.LIVE.bowling.BolPlayers[this.changeBowler];
-    console.log(this.Y);
     this.currentBowler.name = this.Y.name;
     this.currentBowler.run = this.Y.runs;
     this.currentBowler.over = this.Y.overs;
-
   }
  RUN:any;
  OVER_CHA_ARRAY: any [] = [];
@@ -131,6 +147,7 @@ export class LiveMatchComponent {
    {
      this.giveWideORNoBall(this.RUN);
    }
+   this.checkIfMatchEND()
   }
   // ^ WIDE OR NO Ball
 
@@ -249,7 +266,7 @@ addIn1OverArray(run:any)
 
    if(this.BALL==7)
    {
-     alert("Over Complete");
+
      this.LIVE.currentOver+=1;
      this.BALL = 1;
      this.OVER_CHA_ARRAY= [];
@@ -262,6 +279,7 @@ addIn1OverArray(run:any)
      this.currentBowler.name = this.Y.name;
      this.currentBowler.name = this.Y.name;
      this.checkIfMatchEND()
+     alert("Over Complete");
    }
 }
 //! MATCH END
@@ -269,9 +287,26 @@ checkIfMatchEND()
 {
   if(this.LIVE.currentOver==this.LIVE.overChiMatch)
   {
-    alert("MATCH ENDS");
-    localStorage.setItem('matchEnds', JSON.stringify(this.LIVE));
-this.route.navigateByUrl('/result')
+
+    if(this.LIVE.First_Ening_RUNS==0)
+    {
+      alert("First Enning Completed.")
+      this.LIVE.First_Ening_RUNS = this.LIVE.TOTAL_RUNS;
+      localStorage.setItem('matchEnds', JSON.stringify(this.LIVE));
+      this.route.navigateByUrl('/result')
+    }
+    else
+    {
+alert("MATCH OVER")
+      this.LIVE.Second_Ening_RUNS = this.LIVE.TOTAL_RUNS;
+      this.route.navigateByUrl('/final-result');
+    }
+  }
+
+  if((this.LIVE.TOTAL_RUNS-1)>=this.LIVE.First_Ening_RUNS && this.LIVE.First_Ening_RUNS!=0)
+  {
+    alert(`Req.Runs ${this.LIVE.First_Ening_RUNS+1} , Total : ${this.LIVE.TOTAL_RUNS} , So MATCH ENDS`);
+     this.route.navigateByUrl('/final-result');
   }
 }
 BalllingPlayers:any[] = [];
