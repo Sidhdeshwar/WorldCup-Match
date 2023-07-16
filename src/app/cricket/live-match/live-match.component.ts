@@ -8,7 +8,7 @@ import { Afganistan, Australia, England, India, NewZealend, Pakistan, SauthAfric
   styleUrls: ['./live-match.component.css']
 })
 export class LiveMatchComponent {
-
+  FirstInningEnds:boolean = false;
   obj:any = {MeWonToss: false }
   LIVE :any = {
     batting: {
@@ -48,8 +48,9 @@ export class LiveMatchComponent {
 
   constructor(private route:Router)
   {
-    let firstEnning = localStorage.getItem('firstEnning');
-    let secondEnning = localStorage.getItem('secondEnning');
+    let firstEnning = localStorage.getItem('firstEnning_Start');
+    let secondEnning = localStorage.getItem('secondEnning_Start');
+    this.FirstInningEnds = false;
 
     if(secondEnning!=null)
     {
@@ -121,6 +122,7 @@ export class LiveMatchComponent {
  OVER_CHA_ARRAY: any [] = [];
  cnt:any;
  RUN_RATE:any = 0.00;
+
   callRandomRuns()
   {
     let a =  Math.floor(Math.random()*10) ;
@@ -147,7 +149,14 @@ export class LiveMatchComponent {
    {
      this.giveWideORNoBall(this.RUN);
    }
-   this.checkIfMatchEND()
+
+   if(((this.LIVE.TOTAL_RUNS-1)>=this.LIVE.First_Ening_RUNS && this.LIVE.First_Ening_RUNS!=0) && !this.FirstInningEnds)
+   {
+     this.checkIfMatchEND();
+     console.log("");
+     
+   }
+
   }
   // ^ WIDE OR NO Ball
 
@@ -254,11 +263,8 @@ addIn1OverArray(run:any)
    this.OVER_CHA_ARRAY.push(run);
    if(typeof(run)=='number'|| run=='W')
    {
-     let y= ((this.BALL-1) * 1.5)
-     console.log("y : ",y);
-
+     let y= ((this.BALL-1) * 1.5);
      let x = `${this.LIVE.currentOver}.${Math.ceil(y)}`;
-     console.log("x : ",x);
   this.RUN_RATE = this.LIVE.TOTAL_RUNS/+x;
   this.RUN_RATE = this.RUN_RATE.toFixed(2)
   this.BALL++;
@@ -292,13 +298,16 @@ checkIfMatchEND()
     {
       alert("First Enning Completed.")
       this.LIVE.First_Ening_RUNS = this.LIVE.TOTAL_RUNS;
-      localStorage.setItem('matchEnds', JSON.stringify(this.LIVE));
-      this.route.navigateByUrl('/result')
+      localStorage.setItem('firstEnning_Ends', JSON.stringify(this.LIVE));
+      this.route.navigateByUrl('/result');
+      this.FirstInningEnds = true;
+      return;
     }
     else
     {
 alert("MATCH OVER")
       this.LIVE.Second_Ening_RUNS = this.LIVE.TOTAL_RUNS;
+      localStorage.setItem('secondEnning_Ends',JSON.stringify(this.LIVE));
       this.route.navigateByUrl('/final-result');
     }
   }

@@ -40,10 +40,12 @@ export class ResultComponent {
 
 SECOND_Enning_BATTING:any;
 SECOND_Enning_BOWLING:any;
+currentRoute:any;
   // ******* Second Enning Copy Variables :
   constructor(private router:Router)
   {
-    let a = localStorage.getItem('matchEnds');
+    let a = localStorage.getItem('firstEnning_Ends');
+   
     if(a!=null)
     {
        this.LIVE = JSON.parse(a);
@@ -58,6 +60,7 @@ SECOND_Enning_BOWLING:any;
    this.SECOND_Enning_BOWLING = this.LIVE.batting;
 
     }
+this.currentRoute = this.router.url;
   }
 
   calculateRUNS()
@@ -89,7 +92,7 @@ SECOND_Enning_BOWLING:any;
      //~ FIRST ENNING RUNS :
      this.LIVE2.First_Ening_RUNS = this.LIVE.First_Ening_RUNS;
 
-     localStorage.setItem('secondEnning',JSON.stringify(this.LIVE2))
+     localStorage.setItem('secondEnning_Start',JSON.stringify(this.LIVE2))
      this.router.navigateByUrl('/live-match');
 
   }

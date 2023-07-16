@@ -62,10 +62,10 @@
 </table>
 <br>
 <div class="bg-primary text-center text-white"> {{LIVE.bowling.bowlTeam | uppercase}} needs  {{TOTALRUNS+1}} runs to win. </div><br>
-<div class="row">
+<div class="row" *ngIf="currentRoute!='/final-result'">
   <div class="col-md-4"></div>
   <div class="col-md-4">
- <button class="btn btn-warning w-100 text-danger border border-danger shadow-lg fs-3" (click)="StartSecondEning()"><b>Start Now</b></button>
+ <button class="btn btn-warning w-100 text-danger border border-danger shadow-lg fs-3" (click)="StartSecondEning()" ><b>Start Now</b></button>
   </div>
   <div class="col-md-4"></div>
 </div>

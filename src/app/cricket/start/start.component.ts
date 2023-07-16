@@ -150,7 +150,7 @@ LetsPlay()
     this.obj.tosswinteam = this.obj.theyTeam;
   }
 
-  localStorage.setItem('firstEnning', JSON.stringify(this.obj));
+  localStorage.setItem('firstEnning_Start', JSON.stringify(this.obj));
 }
 
 
