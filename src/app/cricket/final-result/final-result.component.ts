@@ -10,15 +10,14 @@ export class FinalResultComponent implements OnDestroy {
 
 
   ngOnDestroy(): void {
-    alert("AAAAAA")
+
     localStorage.removeItem('firstEnning_Start');
     localStorage.removeItem('firstEnning_Ends');
     localStorage.removeItem('secondEnning_Start');
     localStorage.removeItem('secondEnning_Ends');
-    
   }
 
-  
+
   LIVE:any;
   BATTING:any [] = [];
   BALLING:any [] = [];
@@ -35,7 +34,7 @@ export class FinalResultComponent implements OnDestroy {
     wonTeam : '',
     wonByRuns:0
   }
-
+  firstEnning_Start:any;
   constructor(private router:Router)
   {
     let a = localStorage.getItem('secondEnning_Ends');
@@ -48,6 +47,13 @@ export class FinalResultComponent implements OnDestroy {
        console.log(this.BATTING);
        this.RUNSARRAY = this.LIVE.RUNS_ARRAY;
        this.calculateRUNS();
+
+    }
+    let b = localStorage.getItem('firstEnning_Start');
+    if(b)
+    {
+       this.firstEnning_Start = JSON.parse(b);
+       console.log("Start : ", this.firstEnning_Start.myTeam);
 
     }
     this.whoWon();
@@ -66,16 +72,28 @@ export class FinalResultComponent implements OnDestroy {
 
 whoWon()
 {
-   if(this.LIVE.First_Ening_RUNS<this.LIVE.Second_Ening_RUNS)
+   if(this.LIVE?.First_Ening_RUNS<this.LIVE?.Second_Ening_RUNS)
    {
+      console.log("1 ", this.LIVE?.First_Ening_RUNS);
+      console.log("2 ",this.LIVE?.Second_Ening_RUNS );
+
+
         this.batWon.wonTeam = this.LIVE.batting.batTeam;
         this.batWon.wonByWickets = 11- this.LIVE.TOTAL_WICKETS;
    }
    else
    {
-      this.bowlWon.wonTeam = this.LIVE.bowling.bowlTeam;
-      this.bowlWon.wonByRuns = this.LIVE.First_Ening_RUNS - this.LIVE.Second_Ening_RUNS;
+    console.log("1 ", this.LIVE?.First_Ening_RUNS);
+    console.log("2 ",this.LIVE?.Second_Ening_RUNS );
+      this.bowlWon.wonTeam = this.LIVE?.bowling?.bowlTeam;
+      this.bowlWon.wonByRuns = this.LIVE?.First_Ening_RUNS - this.LIVE?.Second_Ening_RUNS;
    }
+}
+
+// ^ ^^^^^^^^^^^^^^^^^^^^^^^ Play Again ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+playAgain()
+{
+  this.router.navigateByUrl('/')
 }
 
 }

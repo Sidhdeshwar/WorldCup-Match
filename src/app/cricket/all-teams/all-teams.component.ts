@@ -108,8 +108,10 @@ return a;
   PayNow(obj:any)
   {
    localStorage.setItem('teams', JSON.stringify(obj));
+   localStorage.removeItem('firstEnning_Start');
+   localStorage.removeItem('firstEnning_Ends');
+   localStorage.removeItem('secondEnning_Start');
+   localStorage.removeItem('secondEnning_Ends');
   }
-
-
 
 }

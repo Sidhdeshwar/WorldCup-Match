@@ -1,14 +1,23 @@
 <!-- <img src="https://www.live-score-app.com/img/sports/cricket/scoreboard-2.png"> -->
 <div class="container mt-5">
-  <div class="card" style="height: 400px;">
+  <video width="1000" height="500" id="myVideo" controls [autoplay]="true" >
+    <source [src]="VIDEO" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <button class="btn btn-success" (click)="callRandomRuns()">Ckick Me</button>
+  <!-- <div class="card" style="height: 400px;">
     <div class="card-header">
       <div class="text-center fs-4 text-primary"><b> LIVE STREAMING</b></div>
     </div>
     <div class="card-body">
-
        <div class="text-center fs-1"><b>{{ RUN }}</b> <br>  <button class="btn btn-success" (click)="callRandomRuns()">Ckick Me</button></div>
     </div>
-  </div>
+    <div class="d-flex justify-content-center">
+
+
+    </div>
+
+  </div> -->
 </div>
 
 <div class="BG rounded-5">
@@ -46,7 +55,7 @@
         </div>
       <p class="text-dark" *ngIf="obj.MeWonToss && LIVE.First_Ening_RUNS==0"> You ( {{obj.MeWonToss}} )  win toss & decided to {{obj.choose}} first.</p>
       <p class="text-dark" *ngIf="obj.TheyWonToss && LIVE.First_Ening_RUNS==0">  {{obj.TheyWonToss}}  win toss & decided to bowl first.</p>
-      <p class="text-dark" *ngIf="LIVE.First_Ening_RUNS!=0"> {{LIVE.batting.batTeam }} needs {{(LIVE.First_Ening_RUNS + 1) - LIVE.TOTAL_RUNS}} runs in {{LIVE.overChiMatch * 6}} bolls</p>
+      <p class="text-dark" *ngIf="LIVE.First_Ening_RUNS!=0"> {{LIVE.batting.batTeam }} needs {{(LIVE.First_Ening_RUNS + 1) - LIVE.TOTAL_RUNS}} runs in {{ (LIVE.overChiMatch * 6 ) -   reaminingBalls }} bolls</p>
       </div>
       <!-- *Middle -->
     </div>

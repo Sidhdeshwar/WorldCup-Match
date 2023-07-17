@@ -9,6 +9,10 @@ import { Afganistan, Australia, England, India, NewZealend, Pakistan, SauthAfric
 })
 export class LiveMatchComponent {
   FirstInningEnds:boolean = false;
+  reaminingBalls = 0;
+  RUN:any = 1;
+  VIDEO  = `./../../../assets/Video/${this.RUN}.mp4` ;
+
   obj:any = {MeWonToss: false }
   LIVE :any = {
     batting: {
@@ -57,8 +61,6 @@ export class LiveMatchComponent {
         this.LIVE = JSON.parse(secondEnning);
         this.openerBatting();
         this.openingBowler();
-        console.log(this.LIVE);
-
     }
     else
     {
@@ -75,11 +77,11 @@ export class LiveMatchComponent {
   {
     for(let i=0 ; i<this.AllTeams1.length ; i++)
     {
-      if(this.AllTeams1[i].team== this.obj.batTeam )
+      if(this.AllTeams1[i].team== this.obj?.batTeam )
       {
-          this.LIVE.batting.url1 = `../../../assets/${this.obj.batTeam}.png`;
-          this.LIVE.batting.batTeam = this.obj.batTeam ;
-          this.LIVE.batting.BatPlayers = this.AllTeams1[i].players;
+          this.LIVE.batting.url1 = `../../../assets/${this.obj?.batTeam}.png`;
+          this.LIVE.batting.batTeam = this.obj?.batTeam ;
+          this.LIVE.batting.BatPlayers = this.AllTeams1[i]?.players;
       }
     }
  this.openerBatting();
@@ -118,7 +120,7 @@ export class LiveMatchComponent {
     this.currentBowler.run = this.Y.runs;
     this.currentBowler.over = this.Y.overs;
   }
- RUN:any;
+
  OVER_CHA_ARRAY: any [] = [];
  cnt:any;
  RUN_RATE:any = 0.00;
@@ -128,6 +130,7 @@ export class LiveMatchComponent {
     let a =  Math.floor(Math.random()*10) ;
    this.RUN = this.randomArray[a];
    this.addIn1OverArray(this.RUN);
+   this.playVideo(this.RUN);
    if(this.RUN=='W')
    {
     if(this.NotOutPlayers.index_0.strike)
@@ -153,8 +156,6 @@ export class LiveMatchComponent {
    if(((this.LIVE.TOTAL_RUNS-1)>=this.LIVE.First_Ening_RUNS && this.LIVE.First_Ening_RUNS!=0) && !this.FirstInningEnds)
    {
      this.checkIfMatchEND();
-     console.log("");
-     
    }
 
   }
@@ -258,6 +259,7 @@ nextBatsmanDetails:any;
 //? BALLING
 BALL:number = 1;
 
+
 addIn1OverArray(run:any)
 {
    this.OVER_CHA_ARRAY.push(run);
@@ -268,6 +270,7 @@ addIn1OverArray(run:any)
   this.RUN_RATE = this.LIVE.TOTAL_RUNS/+x;
   this.RUN_RATE = this.RUN_RATE.toFixed(2)
   this.BALL++;
+  this.reaminingBalls +=1;
    }
 
    if(this.BALL==7)
@@ -284,8 +287,8 @@ addIn1OverArray(run:any)
      this.Y = this.LIVE.bowling.BolPlayers[--this.changeBowler];
      this.currentBowler.name = this.Y.name;
      this.currentBowler.name = this.Y.name;
-     this.checkIfMatchEND()
      alert("Over Complete");
+     this.checkIfMatchEND();
    }
 }
 //! MATCH END
@@ -301,7 +304,7 @@ checkIfMatchEND()
       localStorage.setItem('firstEnning_Ends', JSON.stringify(this.LIVE));
       this.route.navigateByUrl('/result');
       this.FirstInningEnds = true;
-      return;
+
     }
     else
     {
@@ -315,6 +318,8 @@ alert("MATCH OVER")
   if((this.LIVE.TOTAL_RUNS-1)>=this.LIVE.First_Ening_RUNS && this.LIVE.First_Ening_RUNS!=0)
   {
     alert(`Req.Runs ${this.LIVE.First_Ening_RUNS+1} , Total : ${this.LIVE.TOTAL_RUNS} , So MATCH ENDS`);
+    this.LIVE.Second_Ening_RUNS = this.LIVE.TOTAL_RUNS;
+    localStorage.setItem('secondEnning_Ends',JSON.stringify(this.LIVE));
      this.route.navigateByUrl('/final-result');
   }
 }
@@ -334,5 +339,11 @@ increaseDeleveredRuns(run:any)
   this.LIVE.bowling.BolPlayers = this.BalllingPlayers;
 }
 
+playVideo(run:any)
+{
+  let vid: any = document.getElementById("myVideo");
+   this.VIDEO = `./../../../assets/Video/${run}.mp4`
+  vid.load();
+}
 
 }
