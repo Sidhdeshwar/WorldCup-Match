@@ -10,10 +10,12 @@ import { Afganistan, Australia, England, India, NewZealend, Pakistan, SauthAfric
 export class LiveMatchComponent {
   FirstInningEnds:boolean = false;
   reaminingBalls = 0;
-  RUN:any = 1;
+  RUN:any = -1;
   VIDEO  = `./../../../assets/Video/${this.RUN}.mp4` ;
 
+
   obj:any = {MeWonToss: false }
+
   LIVE :any = {
     batting: {
                 url1: '',
@@ -38,7 +40,18 @@ export class LiveMatchComponent {
 
 
   AllTeams1:any[] = [{team:'India',players:India},{team:'Pakistan',players:Pakistan},{team:'Afganistan',players:Afganistan},{team:'New Zealand',players:NewZealend},{team:'England',players:England}, {team:'Australia',players:Australia},{team:'Sauth Africa',players:SauthAfrica},{team:'West Indies',players:WestIndies} ];
-  randomArray: any [] = [0,1,2,3,4,6,'W','WD','NB',0];
+
+  randomArray: any [] = [0,1,2,3,4,6,'W','WD','NB',0,
+                         4,6,3,4,1,1,2,0,'WD',6,
+                         1,6,4,4,1,'W',6,0,'WD',6,
+                         4,6,3,4,1,6,2,0,'NB',6,
+                         'W',6,3,'W',4,1,2,0,'WD',6,
+                         4,6,3,4,'WD',1,2,6,'WD',6,
+                         4,6,'W',4,1,1,2,0,'WD',6,
+                         'NB',6,3,4,1,1,'NB',0,'WD',6,
+                         4,6,6,4,1,6,2,4,'W',6,
+                         4,6,3,4,1,1,2,0,'WD',6,
+                        ];
 
   NotOutPlayers = {
     index_0: { name: 'A', run: 0, ball:0 , strike: true},
@@ -127,8 +140,28 @@ export class LiveMatchComponent {
 
   callRandomRuns()
   {
-    let a =  Math.floor(Math.random()*10) ;
+    if(this.BALL==7)
+    {
+      // this.LIVE.currentOver+=1;
+      this.BALL = 1;
+      this.OVER_CHA_ARRAY= [];
+     //  ~ Overs Added
+      this.BalllingPlayers = this.LIVE.bowling.BolPlayers;
+      this.BalllingPlayers[this.changeBowler].overs +=1;
+      this.LIVE.bowling.BolPlayers = this.BalllingPlayers;
+ // ~~~~~~~~~~~~~~~~~~~~
+      // this.Y = this.LIVE.bowling.BolPlayers[--this.changeBowler];
+      // this.currentBowler.name = this.Y.name;
+      // this.currentBowler.name = this.Y.name;
+      // alert("Over Complete");
+      // this.checkIfMatchEND();
+    }
+
+    let a =  Math.floor(Math.random()*(100-1+1)+ 1 ) ;
+
+
    this.RUN = this.randomArray[a];
+   console.log("RANDOM : ",a , "RUN : ", this.RUN);
    this.addIn1OverArray(this.RUN);
    this.playVideo(this.RUN);
    if(this.RUN=='W')
@@ -157,6 +190,9 @@ export class LiveMatchComponent {
    {
      this.checkIfMatchEND();
    }
+
+   //
+
 
   }
   // ^ WIDE OR NO Ball
@@ -275,19 +311,18 @@ addIn1OverArray(run:any)
 
    if(this.BALL==7)
    {
-
      this.LIVE.currentOver+=1;
-     this.BALL = 1;
-     this.OVER_CHA_ARRAY= [];
     //  ~ Overs Added
-     this.BalllingPlayers = this.LIVE.bowling.BolPlayers;
-     this.BalllingPlayers[this.changeBowler].overs +=1;
-     this.LIVE.bowling.BolPlayers = this.BalllingPlayers;
-// ~~~~~~~~~~~~~~~~~~~~
+//      this.BalllingPlayers = this.LIVE.bowling.BolPlayers;
+//      this.BalllingPlayers[this.changeBowler].overs +=1;
+//      this.LIVE.bowling.BolPlayers = this.BalllingPlayers;
+// // ~~~~~~~~~~~~~~~~~~~~
      this.Y = this.LIVE.bowling.BolPlayers[--this.changeBowler];
      this.currentBowler.name = this.Y.name;
      this.currentBowler.name = this.Y.name;
+
      alert("Over Complete");
+    this.AssignToLIVE_Bowling();
      this.checkIfMatchEND();
    }
 }
