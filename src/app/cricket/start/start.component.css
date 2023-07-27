@@ -1,0 +1,25 @@
+.rotate
+{
+  position: relative;
+  background-color: rgb(247, 150, 5);
+  animation: mymove 0.5s linear 1;
+}
+@keyframes mymove {
+  0%{
+    transform: rotateX(0deg);
+   }
+   25%{
+    transform: rotateX(90deg);
+    background-color: rgb(5, 49, 247);
+    transform: translate(0,-100%);
+   }
+   50%{
+    transform: rotateX(180deg);
+   }
+   75%{
+    transform: rotateX(270deg);
+   }
+100%{
+    transform: rotateX(360deg);
+   }
+}

@@ -112,6 +112,7 @@ return a;
    localStorage.removeItem('firstEnning_Ends');
    localStorage.removeItem('secondEnning_Start');
    localStorage.removeItem('secondEnning_Ends');
+   return void(0)
   }
 
 }

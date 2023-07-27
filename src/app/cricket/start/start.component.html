@@ -36,9 +36,7 @@
         </div>
         <div class="col-md-2 text-center">
             <h2>Vs</h2><hr>
-           Select :  <input type="radio" #Head value="0" name="headTail" (change)="myHeadTail(Head.value)" > Head
-            <input type="radio" #Tail value="1" name="headTail" (change)="myHeadTail(Tail.value)" > Tail
-            <button class="btn btn-info rounded-0 mt-2" (click)="makeToss()" [disabled]="obj.myHeadTail==''">Make Toss</button>
+
         </div>
         <div class="col-md-5">
           <div class="card w-75" >
@@ -54,33 +52,60 @@
           </div>
         </div>
        </div>
+
+   <div class="row mt-4">
+    <div class="col-md-4">
+      <select class="form-select" #OVERS aria-label="Default select example" (change)="SelectOvers(OVERS.value)">
+        <option selected>Select the Overs</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+    <div class="col-md-4 text-center mt-5">
+      <div class="d-flex justify-content-center">
+
+        <img src="../../../assets/Coin/head.jpg" *ngIf="TOSS==''" class="toss" alt=""  height="150" width="150">
+        <img src="../../../assets/Coin/head.jpg" *ngIf="TOSS=='head'" class="toss" alt=""  height="150" width="150">
+        <img src="../../../assets/Coin/tail.jpg" *ngIf="TOSS=='tail'" class="toss" alt=""  height="150" width="150">
+      </div>
+      <button class="btn btn-info rounded-0 mt-2" (click)="makeToss()" [disabled]="obj.myHeadTail==''">Make Toss</button>
+    </div>
+    <div class="col-md-4">
+     <b class="text-primary me-4">Choose Coin Side : </b> <input type="radio" #Head value="0" name="headTail" (change)="myHeadTail(Head.value)" > Head
+      <input type="radio" #Tail value="1" name="headTail" (change)="myHeadTail(Tail.value)" > Tail
+
+    </div>
+
+   </div>
+
        <!-- * TOSS -->
-       <div *ngIf="obj.MeWonToss!=''" class="text-center mt-3">
+       <div class="text-center mt-3" *ngIf="obj.MeWonToss!=''">
         <b class="text-primary">You ({{obj.MeWonToss}}) Won the Toss & Choose :</b>
         &nbsp; &nbsp;  <input type="radio" #BAT value="bat" name="batbowl" (change)="MeWonToss_BatBol(BAT.value)" > Bat
          <input type="radio" #BOWL value="bowl" name="batbowl" (change)="MeWonToss_BatBol(BOWL.value)" > Bowl
         <br>
-        <div class="row text-center">
-          <div class="col-4"></div>
-          <div class="col-4">
-            <select class="form-select" #OVERS aria-label="Default select example" (change)="SelectOvers(OVERS.value)">
-              <option selected>Select the Overs</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-            </select>
+        <div class="row mt-4" >
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+         <button class="btn btn-success w-100 text-white border border-danger shadow-lg fs-3" routerLink="/live-match" (click)="LetsPlay()"><b>Let's Play</b></button>
           </div>
-          <div class="col-4"></div>
-
-      </div>
-        <button class="btn btn-success rounded-0 m-2" routerLink="/live-match" (click)="LetsPlay()" [disabled]="obj.overs==4">Let's Play</button>
+          <div class="col-md-4"></div>
+        </div>
       </div>
       <div *ngIf="obj.TheyWonToss!=''" class="text-center mt-3">
         <b class="text-danger">{{obj.TheyWonToss}} Won the Toss & Decided to Bowl first.</b>
         <br>
-        <button class="btn btn-success rounded-0 m-2" routerLink="/live-match" (click)="LetsPlay()">Let's Play</button>
+        <!-- <button class="btn btn-success rounded-0 m-2" routerLink="/live-match" (click)="LetsPlay()">Let's Play</button> -->
+        <div class="row mt-4" >
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+         <button class="btn btn-success w-100 text-white border border-danger shadow-lg fs-3"routerLink="/live-match" (click)="LetsPlay()"><b>Let's Play</b></button>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
       </div>
       <!-- * TOSS -->
 <br>
@@ -131,4 +156,9 @@
        </div>
       </div>
     </div>
+
   </div>
+
+
+
+  <!--  -->

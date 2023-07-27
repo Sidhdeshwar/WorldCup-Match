@@ -140,22 +140,22 @@ export class LiveMatchComponent {
 
   callRandomRuns()
   {
-    if(this.BALL==7)
-    {
-      // this.LIVE.currentOver+=1;
-      this.BALL = 1;
-      this.OVER_CHA_ARRAY= [];
-     //  ~ Overs Added
-      this.BalllingPlayers = this.LIVE.bowling.BolPlayers;
-      this.BalllingPlayers[this.changeBowler].overs +=1;
-      this.LIVE.bowling.BolPlayers = this.BalllingPlayers;
- // ~~~~~~~~~~~~~~~~~~~~
-      // this.Y = this.LIVE.bowling.BolPlayers[--this.changeBowler];
-      // this.currentBowler.name = this.Y.name;
-      // this.currentBowler.name = this.Y.name;
-      // alert("Over Complete");
-      // this.checkIfMatchEND();
-    }
+//     if(this.BALL==7)
+//     {
+//       // this.LIVE.currentOver+=1;
+//       this.BALL = 1;
+//       this.OVER_CHA_ARRAY= [];
+//      //  ~ Overs Added
+//       this.BalllingPlayers = this.LIVE.bowling.BolPlayers;
+//       this.BalllingPlayers[this.changeBowler].overs +=1;
+//       this.LIVE.bowling.BolPlayers = this.BalllingPlayers;
+//  // ~~~~~~~~~~~~~~~~~~~~
+//       // this.Y = this.LIVE.bowling.BolPlayers[--this.changeBowler];
+//       // this.currentBowler.name = this.Y.name;
+//       // this.currentBowler.name = this.Y.name;
+//       // alert("Over Complete");
+//       // this.checkIfMatchEND();
+//     }
 
     let a =  Math.floor(Math.random()*(100-1+1)+ 1 ) ;
 
@@ -309,22 +309,24 @@ addIn1OverArray(run:any)
   this.reaminingBalls +=1;
    }
 
-   if(this.BALL==7)
-   {
-     this.LIVE.currentOver+=1;
-    //  ~ Overs Added
-//      this.BalllingPlayers = this.LIVE.bowling.BolPlayers;
-//      this.BalllingPlayers[this.changeBowler].overs +=1;
-//      this.LIVE.bowling.BolPlayers = this.BalllingPlayers;
-// // ~~~~~~~~~~~~~~~~~~~~
-     this.Y = this.LIVE.bowling.BolPlayers[--this.changeBowler];
-     this.currentBowler.name = this.Y.name;
-     this.currentBowler.name = this.Y.name;
+    if(this.BALL==7)
+    {
+      this.LIVE.currentOver+=1;
+      this.BALL = 1;
+      this.OVER_CHA_ARRAY= [];
+     //  ~ Overs Added
+      this.BalllingPlayers = this.LIVE.bowling.BolPlayers;
+      this.BalllingPlayers[this.changeBowler].overs +=1;
+      this.LIVE.bowling.BolPlayers = this.BalllingPlayers;
+ // ~~~~~~~~~~~~~~~~~~~~
+      this.Y = this.LIVE.bowling.BolPlayers[--this.changeBowler];
+      this.currentBowler.name = this.Y.name;
+      this.currentBowler.name = this.Y.name;
+      alert("Over Complete");
+      this.AssignToLIVE_Bowling();
+      this.checkIfMatchEND();
+    }
 
-     alert("Over Complete");
-    this.AssignToLIVE_Bowling();
-     this.checkIfMatchEND();
-   }
 }
 //! MATCH END
 checkIfMatchEND()

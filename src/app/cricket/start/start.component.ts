@@ -7,7 +7,8 @@ import { ALL_TEAMS, plr } from 'src/app/store';
 @Component({
   selector: 'app-start',
   templateUrl: './start.component.html',
-  styleUrls: ['./start.component.css']
+  styleUrls: ['./start.component.css'],
+
 })
 export class StartComponent {
 
@@ -87,27 +88,48 @@ myHeadTail(Headtail:any)
 {
  this.obj.myHeadTail = Headtail;
 }
-
+TOSS:any = '';
 makeToss()
 {
-  this.obj.MeWonToss = '';
-  this.obj.TheyWonToss = '';
-  let randomNumber = -1;
-  if(this.obj.myTeam=='')
-  {
-    alert("Select Your Team First.")
-  }
-  else
-  {
-    randomNumber = Math.floor(Math.random() *100);
-    if( +this.obj.myHeadTail==0 && randomNumber%2==0)
-    this.obj.MeWonToss = this.obj.myTeam;
+ 
+  let el :any = document.querySelector('.toss');
+  el.classList.add('rotate');
+  setTimeout(()=>{
+    el.classList.remove('rotate');
+    this.obj.MeWonToss = '';
+    this.obj.TheyWonToss = '';
+    let randomNumber = -1;
+    if(this.obj.myTeam=='')
+    {
+      alert("Select Your Team First.")
+    }
+    else
+    {
+      randomNumber = Math.floor(Math.random() *100);
+      if(randomNumber%2==0)
+      {
+        this.TOSS = 'head';
+      }
+      else
+      {
+        this.TOSS = 'tail';
+      }
+      if( +this.obj.myHeadTail==0 && randomNumber%2==0)
+      {
+        this.obj.MeWonToss = this.obj.myTeam;
+      }
 
-    else if( +this.obj.myHeadTail==1 && randomNumber%2!=0)
-    this.obj.MeWonToss = this.obj.myTeam;
+      else if( +this.obj.myHeadTail==1 && randomNumber%2!=0)
+      {
+        this.obj.MeWonToss = this.obj.myTeam;
+      }
 
-    else this.obj.TheyWonToss = this.obj.theyTeam;
-  }
+      else this.obj.TheyWonToss = this.obj.theyTeam;
+    }
+
+  },1000)
+
+
 }
 
 SelectOvers(overs:any)
@@ -156,3 +178,4 @@ LetsPlay()
 
 
 }
+
