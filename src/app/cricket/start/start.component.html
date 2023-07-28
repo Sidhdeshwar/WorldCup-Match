@@ -25,7 +25,7 @@
           <div class="card w-75 rounded-0" >
             <ul class="list-group list-group-flush rounded-0">
               <li class="list-group-item bg-light text-center fs-4">
-                Select Your Team <input type="radio" style="height: 20px; width: 20px;" #ID value="{{team1}}" name="myTeam" (change)="selectMyTeam(ID.value)"  >
+                <b class="text-danger">* </b> Select Your Team <input type="radio" style="height: 20px; width: 20px;" #ID value="{{team1}}" name="myTeam" (change)="selectMyTeam(ID.value)"  >
               </li>
               <li class="list-group-item d-flex">
                 <img src="{{url1}}" class="rounded-1" alt="..." height="45" width="60" >
@@ -36,13 +36,12 @@
         </div>
         <div class="col-md-2 text-center">
             <h2>Vs</h2><hr>
-
         </div>
         <div class="col-md-5">
           <div class="card w-75" >
             <ul class="list-group list-group-flush rounded-0">
               <li class="list-group-item bg-light  text-center fs-4">
-                Select Your Team <input type="radio" style="height: 20px; width: 20px;" #ID2 value="{{team2}}" name="myTeam" (change)="selectMyTeam(ID2.value)">
+                <b class="text-danger">* </b> Select Your Team <input type="radio" style="height: 20px; width: 20px;" #ID2 value="{{team2}}" name="myTeam" (change)="selectMyTeam(ID2.value)">
               </li>
               <li class="list-group-item d-flex">
                 <img src="{{url2}}" class="rounded-1" alt="..."  height="45" width="60" >
@@ -55,6 +54,7 @@
 
    <div class="row mt-4">
     <div class="col-md-4">
+      <b class="text-danger">* </b> <b class="text-primary me-4">Select the Overs : </b>
       <select class="form-select" #OVERS aria-label="Default select example" (change)="SelectOvers(OVERS.value)">
         <option selected>Select the Overs</option>
         <option value="2">2</option>
@@ -71,10 +71,10 @@
         <img src="../../../assets/Coin/head.jpg" *ngIf="TOSS=='head'" class="toss" alt=""  height="150" width="150">
         <img src="../../../assets/Coin/tail.jpg" *ngIf="TOSS=='tail'" class="toss" alt=""  height="150" width="150">
       </div>
-      <button class="btn btn-info rounded-0 mt-2" (click)="makeToss()" [disabled]="obj.myHeadTail==''">Make Toss</button>
+      <button class="btn btn-info rounded-0 mt-2" (click)="makeToss()" [disabled]="obj.myHeadTail=='' || obj.overs==0 || obj.myTeam=='' ">Make Toss</button>
     </div>
     <div class="col-md-4">
-     <b class="text-primary me-4">Choose Coin Side : </b> <input type="radio" #Head value="0" name="headTail" (change)="myHeadTail(Head.value)" > Head
+      <b class="text-danger">* </b> <b class="text-primary me-4">Choose Coin Side : </b> <input type="radio" #Head value="0" name="headTail" (change)="myHeadTail(Head.value)" > Head
       <input type="radio" #Tail value="1" name="headTail" (change)="myHeadTail(Tail.value)" > Tail
 
     </div>
@@ -102,7 +102,7 @@
         <div class="row mt-4" >
           <div class="col-md-4"></div>
           <div class="col-md-4">
-         <button class="btn btn-success w-100 text-white border border-danger shadow-lg fs-3"routerLink="/live-match" (click)="LetsPlay()"><b>Let's Play</b></button>
+         <button class="btn btn-success w-100 text-white border border-danger shadow-lg fs-3"  routerLink="/live-match" (click)="LetsPlay()"><b>Let's Play</b></button>
           </div>
           <div class="col-md-4"></div>
         </div>

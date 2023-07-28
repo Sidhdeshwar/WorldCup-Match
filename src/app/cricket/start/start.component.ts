@@ -31,7 +31,7 @@ obj = {
   MeWonToss:'',
   TheyWonToss:'',
   choose:'',
-  overs:4,
+  overs:0,
   tosswinteam:'',
   batTeam:'',
   bowlTeam:''
@@ -91,7 +91,7 @@ myHeadTail(Headtail:any)
 TOSS:any = '';
 makeToss()
 {
- 
+
   let el :any = document.querySelector('.toss');
   el.classList.add('rotate');
   setTimeout(()=>{
